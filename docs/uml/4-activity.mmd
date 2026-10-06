@@ -1,0 +1,27 @@
+%%{init: {"theme": "neutral"}}%%
+flowchart TD
+  S((Start)):::term --> L{"Logged in?"}
+  L -- No --> LG["Log in or sign up"] --> M
+  L -- Yes --> M{"How will the task be added?"}
+  M -- Type or speak a sentence --> SND["Send sentence to server"]
+  SND --> PRS["Gemini parses task fields"]
+  PRS --> OK{"Parse succeeded?"}
+  OK -- No --> FB["Open form, keep raw sentence"]
+  OK -- Yes --> RV["Show parsed fields for review"]
+  RV --> CH{"User wants changes?"}
+  CH -- Yes --> FRM["Edit fields in form"]
+  CH -- No --> V
+  FB --> FRM
+  M -- Fill a form --> FRM
+  FRM --> V{"Title set and duration_min > 0?"}
+  V -- No --> ER["Show validation error"] --> FRM
+  V -- Yes --> SV["Save Nova Task"]
+  SV --> F1[" "]:::bar
+  F1 --> LS["Refresh task list"]
+  F1 --> PL["Recompute day plan (planned)"]:::planned
+  LS --> J1[" "]:::bar
+  PL --> J1
+  J1 --> E((End)):::term
+  classDef bar fill:#17212B,stroke:#17212B
+  classDef term fill:#17212B,stroke:#17212B,color:#FFFFFF
+  classDef planned stroke-dasharray:5 4,stroke:#95580A

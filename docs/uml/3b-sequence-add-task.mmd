@@ -1,0 +1,30 @@
+%%{init: {"theme": "neutral"}}%%
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant FE as ScheduNova Web UI
+  participant FS as Frappe server
+  participant P as TaskParser (planned)
+  participant AI as Gemini API
+  participant T as NovaTask
+  participant DB as MariaDB
+  U->>FE: "Gym tomorrow 7am for an hour, high priority"
+  FE->>FS: POST parse request + X-Frappe-CSRF-Token
+  FS->>FS: Check session cookie and CSRF token
+  FS->>P: parse(utterance)
+  P->>AI: Prompt + utterance over HTTPS
+  AI-->>P: JSON title, priority, duration_min, fixed_start, deadline, context
+  P-->>FS: Draft field values
+  FS-->>FE: Draft task
+  FE-->>U: Show parsed fields for review
+  U->>FE: Confirm or correct fields
+  FE->>FS: POST /api/resource/Nova Task
+  FS->>T: insert()
+  T->>T: validate() checks duration_min > 0
+  alt duration not positive
+    T-->>FE: Error "Duration must be a positive number of minutes."
+  else valid
+    T->>DB: INSERT tabNova Task (owner = user, raw = sentence)
+    FS-->>FE: Saved task
+    FE-->>U: Task appears in the list
+  end

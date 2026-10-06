@@ -1,0 +1,73 @@
+%%{init: {"theme": "neutral"}}%%
+classDiagram
+  direction LR
+  class Document {
+    <<framework>>
+    +name: str
+    +owner: str
+    +creation: datetime
+    +modified: datetime
+    +insert()
+    +save()
+    +delete()
+    +validate()
+  }
+  class User {
+    <<Frappe core>>
+    +email: str
+    +first_name: str
+    +full_name: str
+    +user_type: str
+    +enabled: bool
+  }
+  class NovaTask {
+    +title: str
+    +priority: Priority = medium
+    +duration_min: int = 45
+    +fixed_start: datetime
+    +deadline: datetime
+    +context: str
+    +done: bool = false
+    +raw: str readonly
+    +validate()
+  }
+  class Priority {
+    <<enumeration>>
+    high
+    medium
+    low
+  }
+  class SchedunovaAPI {
+    <<module api.py>>
+    +sign_up(email, full_name, password) dict
+    +me() dict
+    +get_csrf_token() dict
+  }
+  class TaskParser {
+    <<planned>>
+    -gemini_api_key: str
+    +parse(utterance: str) NovaTask
+  }
+  class DayPlanner {
+    <<planned>>
+    +build_plan(user: User, day: date) DayPlan
+  }
+  class DayPlan {
+    <<planned>>
+    +day: date
+  }
+  class TimeBlock {
+    <<planned>>
+    +start: datetime
+    +end: datetime
+  }
+  Document <|-- User
+  Document <|-- NovaTask
+  NovaTask --> Priority
+  User "1" --> "0..*" NovaTask : owns
+  SchedunovaAPI ..> User : creates
+  TaskParser ..> NovaTask : creates
+  DayPlanner ..> DayPlan : creates
+  DayPlan "1" *-- "1..*" TimeBlock : composition
+  TimeBlock "0..*" o-- "1" NovaTask : aggregation
+  DayPlan "0..*" --> "1" User : for

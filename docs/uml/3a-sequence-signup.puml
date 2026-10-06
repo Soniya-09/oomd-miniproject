@@ -1,0 +1,31 @@
+@startuml
+title Scenario A: Sign up
+autonumber
+actor Guest as G
+participant "ScheduNova Web UI" as FE
+participant "Frappe server" as FS
+participant "Rate limiter" as RL
+database "MariaDB" as DB
+G -> FE : Enter name, email, password
+FE -> FS : POST /api/method/schedunova.api.sign_up
+FS -> RL : apply(limit=5, seconds=3600)
+alt more than 5 attempts in the last hour
+  RL --> FE : 429 Too Many Requests
+else within limit
+  FS -> FS : normalise email, validate_email_address()
+  FS -> DB : exists("User", email)?
+  alt email already registered
+    FS --> FE : error "account already exists"
+  else new email
+    FS -> DB : INSERT User (Website User)
+    FS -> DB : update_password(user, password)
+    note over FS, DB : weak password throws, request rolls back
+    FS --> FE : {ok: true, user}
+    FE -> FS : POST /api/method/login
+    FS --> FE : Set-Cookie sid
+    FE -> FS : GET get_csrf_token
+    FS --> FE : {csrf_token}
+    FE --> G : show task dashboard
+  end
+end
+@enduml

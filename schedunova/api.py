@@ -3,15 +3,15 @@
 
 import frappe
 from frappe import _
+from frappe.rate_limiter import rate_limit
 from frappe.utils.password import update_password
 
 
 @frappe.whitelist(allow_guest=True, methods=["POST"])
+@rate_limit(limit=5, seconds=60 * 60)
 def sign_up(email: str, full_name: str, password: str):
 	"""Create a Website User with a usable password (no email verification
 	round-trip). Called from the ScheduNova signup page."""
-	frappe.rate_limiter.apply(limit=5, seconds=60 * 60)
-
 	email = (email or "").strip().lower()
 	full_name = (full_name or "").strip()
 

@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor Guest
+actor "Registered User" as User
+actor "System Manager" as Admin
+actor "Gemini AI" as AI <<external system>>
+rectangle "ScheduNova System" {
+  usecase "Sign up" as UC1
+  usecase "Validate password strength" as UC2
+  usecase "Log in" as UC3
+  usecase "Log out" as UC4
+  usecase "Add task in natural language" as UC5
+  usecase "Parse sentence into task fields" as UC6
+  usecase "Correct parsed fields" as UC7
+  usecase "Add or edit task manually" as UC8
+  usecase "View task list" as UC9
+  usecase "Mark task done" as UC10
+  usecase "Delete task" as UC11
+  usecase "Generate daily schedule\n(planned)" as UC12
+  usecase "Manage all users and tasks" as UC13
+}
+Guest -- UC1
+Guest -- UC3
+User -- UC3
+User -- UC4
+User -- UC5
+User -- UC8
+User -- UC9
+User -- UC10
+User -- UC11
+User -- UC12
+Admin -- UC13
+UC1 ..> UC2 : <<include>>
+UC5 ..> UC6 : <<include>>
+UC7 ..> UC5 : <<extend>>
+UC6 -- AI
+@enduml

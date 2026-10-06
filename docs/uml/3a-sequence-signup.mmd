@@ -1,0 +1,30 @@
+%%{init: {"theme": "neutral"}}%%
+sequenceDiagram
+  autonumber
+  actor G as Guest
+  participant FE as ScheduNova Web UI
+  participant FS as Frappe server
+  participant RL as Rate limiter
+  participant DB as MariaDB
+  G->>FE: Enter name, email, password
+  FE->>FS: POST /api/method/schedunova.api.sign_up
+  FS->>RL: apply(limit=5, seconds=3600)
+  alt more than 5 attempts in the last hour
+    RL-->>FE: 429 Too Many Requests
+  else within limit
+    FS->>FS: Normalise email, validate_email_address()
+    FS->>DB: exists("User", email)?
+    alt email already registered
+      FS-->>FE: Error "An account with this email already exists"
+    else new email
+      FS->>DB: INSERT User (Website User, enabled)
+      FS->>DB: update_password(user, password)
+      Note over FS,DB: Weak password throws and the whole request rolls back
+      FS-->>FE: {ok: true, user: email}
+      FE->>FS: POST /api/method/login (usr, pwd)
+      FS-->>FE: Set-Cookie sid (session)
+      FE->>FS: GET schedunova.api.get_csrf_token
+      FS-->>FE: {csrf_token}
+      FE-->>G: Show task dashboard
+    end
+  end

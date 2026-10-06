@@ -1,0 +1,32 @@
+@startuml
+start
+if (Logged in?) then (no)
+  :Log in or sign up;
+endif
+if (How will the task be added?) then (type or speak)
+  :Send sentence to server;
+  :Gemini parses task fields;
+  if (Parse succeeded?) then (yes)
+    :Show parsed fields for review;
+    if (User wants changes?) then (yes)
+      :Edit fields in form;
+    endif
+  else (no)
+    :Open form, keep raw sentence;
+    :Edit fields in form;
+  endif
+else (fill a form)
+  :Edit fields in form;
+endif
+while (Title set and duration_min > 0?) is (no)
+  :Show validation error;
+  :Edit fields in form;
+endwhile (yes)
+:Save Nova Task;
+fork
+  :Refresh task list;
+fork again
+  :Recompute day plan (planned);
+end fork
+stop
+@enduml

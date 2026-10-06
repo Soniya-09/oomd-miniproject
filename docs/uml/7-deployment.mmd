@@ -1,0 +1,28 @@
+%%{init: {"theme": "neutral"}}%%
+flowchart TB
+  subgraph PC["«device» Developer laptop: Windows 11"]
+    BR["«client» Web browser"]
+    subgraph WSL["«execution environment» WSL2: Ubuntu"]
+      subgraph BENCH["«execution environment» frappe-v16-bench: Python 3.14, Node 24"]
+        WEB["web: bench serve, port 8001"]
+        SIO["socketio: Node, port 9001"]
+        WK["worker: background jobs"]
+        SCH["schedule: scheduler"]
+        RC[("redis_cache, port 13001")]
+        RQ[("redis_queue, port 11001")]
+      end
+      MDB[("MariaDB 10.11, systemd service")]
+    end
+  end
+  subgraph GC["«device» Google Cloud"]
+    GEM["Gemini API"]
+  end
+  BR -->|"HTTP schedunova.localhost:8001"| WEB
+  BR -.->|WebSocket| SIO
+  WEB --> MDB
+  WEB --> RC
+  WEB --> RQ
+  WK --> RQ
+  WK --> MDB
+  SCH --> RQ
+  WEB -->|HTTPS| GEM

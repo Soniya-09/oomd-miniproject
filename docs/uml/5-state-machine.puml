@@ -1,0 +1,37 @@
+@startuml
+title ScheduNova - State Machine: Nova Task
+hide empty description
+skinparam state {
+  BackgroundColor #F7F9FB
+  BorderColor #1D5B97
+}
+
+state fork1 <<fork>>
+state join1 <<join>>
+state "Updating task list" as UpdList
+state "Freeing time slot" as FreeSlot
+
+[*] --> Draft : add task
+Draft --> Draft : save [invalid] / show error
+Draft --> Pending : save [valid]
+Draft --> [*] : cancel
+
+Pending --> Pending : edit task
+Pending --> Scheduled : set start time
+Scheduled --> Scheduled : change start time
+Pending --> Overdue : deadline passed
+Scheduled --> Overdue : deadline passed
+
+Pending --> fork1 : mark done
+Scheduled --> fork1 : mark done
+Overdue --> fork1 : mark done
+
+fork1 --> UpdList
+fork1 --> FreeSlot
+UpdList --> join1
+FreeSlot --> join1
+join1 --> Done
+
+Done --> Deleted : delete
+Deleted --> [*]
+@enduml

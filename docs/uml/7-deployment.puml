@@ -1,0 +1,28 @@
+@startuml
+node "Developer laptop\n<<device>> Windows 11" as PC {
+  component "Web browser" as BR
+  node "WSL2 Ubuntu\n<<execution environment>>" as WSL {
+    node "frappe-v16-bench\nPython 3.14, Node 24" as BENCH {
+      component "web: bench serve :8001" as WEB
+      component "socketio :9001" as SIO
+      component "worker" as WK
+      component "scheduler" as SCH
+      database "redis_cache :13001" as RC
+      database "redis_queue :11001" as RQ
+    }
+    database "MariaDB 10.11" as DB
+  }
+}
+node "Google Cloud\n<<device>>" as GC {
+  component "Gemini API" as GEM
+}
+BR --> WEB : HTTP :8001
+BR ..> SIO : WebSocket
+WEB --> DB
+WEB --> RC
+WEB --> RQ
+WK --> RQ
+WK --> DB
+SCH --> RQ
+WEB --> GEM : HTTPS
+@enduml

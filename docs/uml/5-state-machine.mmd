@@ -1,0 +1,17 @@
+%%{init: {"theme": "neutral"}}%%
+stateDiagram-v2
+  [*] --> Draft : sentence parsed or form opened
+  Draft --> [*] : cancel
+  Draft --> Open : save [validate passes]
+  state Open {
+    [*] --> Pending
+    Pending --> Scheduled : fixed_start set
+    Scheduled --> Pending : fixed_start cleared
+    Pending --> Overdue : [now > deadline]
+    Scheduled --> Overdue : [now > deadline]
+  }
+  Open --> Done : tick Done / done = 1
+  Done --> Open : untick Done / done = 0
+  Open --> Deleted : delete
+  Done --> Deleted : delete
+  Deleted --> [*]
