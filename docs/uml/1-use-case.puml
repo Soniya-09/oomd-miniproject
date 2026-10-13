@@ -1,38 +1,74 @@
-@startuml
+
+@startuml 1-use-case
+!include _style.iuml
+title EduFlow — Use Case Diagram
 left to right direction
-skinparam packageStyle rectangle
-actor Guest
-actor "Registered User" as User
-actor "System Manager" as Admin
-actor "Gemini AI" as AI <<external system>>
-rectangle "ScheduNova System" {
-  usecase "Sign up" as UC1
-  usecase "Validate password strength" as UC2
-  usecase "Log in" as UC3
-  usecase "Log out" as UC4
-  usecase "Add task in natural language" as UC5
-  usecase "Parse sentence into task fields" as UC6
-  usecase "Correct parsed fields" as UC7
-  usecase "Add or edit task manually" as UC8
-  usecase "View task list" as UC9
-  usecase "Mark task done" as UC10
-  usecase "Delete task" as UC11
-  usecase "Generate daily schedule\n(planned)" as UC12
-  usecase "Manage all users and tasks" as UC13
+
+actor Admin
+actor Teacher
+actor Student
+actor "Scheduler\n(cron job)" as Cron <<system>>
+
+rectangle "EduFlow System" {
+  usecase "Log in" as Login
+  usecase "Reset password" as Reset
+  usecase "Manage profile" as Profile
+
+  usecase "Manage users" as Users
+  usecase "Import users (CSV)" as Import
+  usecase "Manage classes & subjects" as Classes
+  usecase "Enroll students" as Enroll
+  usecase "Assign teachers" as AssignT
+  usecase "View reports" as Reports
+
+  usecase "Create assignment" as Create
+  usecase "Publish assignment" as Publish
+  usecase "Review & grade submission" as Grade
+  usecase "Return for revision" as Return
+  usecase "Post announcement" as Announce
+
+  usecase "View assignments" as View
+  usecase "Submit assignment" as Submit
+  usecase "Validate file" as Validate
+  usecase "Manage personal tasks" as Tasks
+  usecase "View calendar" as Calendar
+  usecase "View progress dashboard" as Progress
+
+  usecase "Send notification" as Notify
+  usecase "Send reminders" as Remind
 }
-Guest -- UC1
-Guest -- UC3
-User -- UC3
-User -- UC4
-User -- UC5
-User -- UC8
-User -- UC9
-User -- UC10
-User -- UC11
-User -- UC12
-Admin -- UC13
-UC1 ..> UC2 : <<include>>
-UC5 ..> UC6 : <<include>>
-UC7 ..> UC5 : <<extend>>
-UC6 -- AI
+
+Admin --> Login
+Admin --> Users
+Admin --> Classes
+Admin --> Enroll
+Admin --> AssignT
+Admin --> Reports
+Admin --> Announce
+
+Teacher --> Login
+Teacher --> Create
+Teacher --> Publish
+Teacher --> Grade
+Teacher --> Announce
+Teacher --> Reports
+
+Student --> Login
+Student --> Profile
+Student --> View
+Student --> Submit
+Student --> Tasks
+Student --> Calendar
+Student --> Progress
+
+Cron --> Remind
+
+Reset .> Login : <<extend>>
+Import .> Users : <<extend>>
+Return .> Grade : <<extend>>
+Submit ..> Validate : <<include>>
+Publish ..> Notify : <<include>>
+Grade ..> Notify : <<include>>
+Announce ..> Notify : <<include>>
+Remind ..> Notify : <<include>>
 @enduml

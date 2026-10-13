@@ -1,0 +1,106 @@
+@startuml 6-component
+!include _style.iuml
+title EduFlow — Component Diagram
+
+package "Browser" {
+  component [HTML pages\n(server-rendered shells)] as Pages
+  component [app.js\nAPI client · forms · tables · toasts] as AppJs
+  component [admin.js] as AdminJs
+  component [teacher.js] as TeacherJs
+  component [student.js · tasks.js\nprogress.js · dashboard.js] as StudentJs
+  component [shared.js\ncalendar · notifications · announcements] as SharedJs
+  component [charts.js] as ChartsJs
+  AdminJs ..> AppJs
+  TeacherJs ..> AppJs
+  StudentJs ..> AppJs
+  SharedJs ..> AppJs
+  StudentJs ..> ChartsJs
+  AdminJs ..> ChartsJs
+}
+
+cloud "cdn.jsdelivr.net" {
+  component [Bootstrap 5 + Icons] as Bootstrap
+  component [Chart.js 4] as ChartLib
+}
+Pages ..> Bootstrap
+ChartsJs ..> ChartLib
+
+package "EduFlow application (PHP 8)" {
+  component [Front controller\npublic/index.php] as Front
+  component [Kernel + Router] as Router
+  component [Middleware\nAuthenticate · RequireRole · VerifyCsrf] as MW
+  component [Page & Auth controllers] as PageCtl
+  component [API controllers\nAdmin · Teacher · Student · Shared ·\nNotification · File · Report] as ApiCtl
+  component [Views\nresources/views] as Views
+
+  package "Services (business rules)" {
+    component [Policy\n(scope & ownership)] as Policy
+    component [Auth & Users] as UserSvc
+    component [Academic structure\n& Schedule] as Academic
+    component [Assignments] as AssignSvc
+    component [Submissions] as SubSvc
+    component [Personal tasks\n& StudentWork] as TaskSvc
+    component [Analytics] as Analytics
+    component [Announcements\n& Calendar] as AnnSvc
+    component [Notifications] as NotifSvc
+    component [Reminders] as Reminder
+    component [FileStorage] as Files
+    component [AuditLog · Mailer] as Audit
+  }
+  component [Core\nDatabase (PDO) · Validator ·\nSession · Csrf · RateLimiter] as Core
+
+  interface "Pages (HTML)" as IPage
+  interface "/api (JSON)" as IApi
+}
+
+component [bin/reminders.php\n(scheduled job)] as Cron
+component [bin/migrate.php · seed.php · test.php] as Cli
+
+database "MySQL 8\neduflow" as DB
+folder "storage/private_uploads" as Store
+file "storage/logs\n(mail.log, php-error.log)" as Logs
+
+Pages --> IPage
+AppJs --> IApi : fetch + X-CSRF-Token
+IPage - Front
+IApi - Front
+Front --> Router
+Router --> MW
+MW --> PageCtl
+MW --> ApiCtl
+PageCtl --> Views
+PageCtl --> UserSvc
+
+ApiCtl --> UserSvc
+ApiCtl --> Academic
+ApiCtl --> AssignSvc
+ApiCtl --> SubSvc
+ApiCtl --> TaskSvc
+ApiCtl --> Analytics
+ApiCtl --> AnnSvc
+ApiCtl --> NotifSvc
+ApiCtl --> Files
+
+AssignSvc --> Policy
+SubSvc --> Policy
+AssignSvc --> NotifSvc
+SubSvc --> NotifSvc
+SubSvc --> Files
+AnnSvc --> NotifSvc
+Analytics --> TaskSvc
+Reminder --> NotifSvc
+Cron --> Reminder
+Cli --> Core
+
+UserSvc --> Core
+Academic --> Core
+AssignSvc --> Core
+SubSvc --> Core
+TaskSvc --> Core
+Analytics --> Core
+NotifSvc --> Core
+Audit --> Core
+Core --> DB : PDO / TCP 3306
+Files --> Store
+Audit --> Logs
+@enduml

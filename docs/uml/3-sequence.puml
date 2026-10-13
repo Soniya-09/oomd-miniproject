@@ -1,0 +1,49 @@
+@startuml 3-sequence
+!include _style.iuml
+title EduFlow — Sequence Diagram: Submit and grade an assignment
+autonumber
+
+actor Student
+participant "Browser" as UI
+participant "Controller" as SC
+participant "SubmissionService" as SS
+participant "FileStorage" as FS
+database "MySQL" as DB
+participant "NotificationService" as NS
+actor Teacher
+
+Student -> UI : open assignment
+UI -> SC : GET /api/student/assignments/{id}
+SC -> DB : load assignment (only if addressed to student)
+DB --> SC : assignment details
+SC --> UI : show instructions and due date
+
+Student -> UI : choose file, click Submit
+UI -> SC : POST submission (file + CSRF token)
+SC -> SS : submit(assignment, files)
+SS -> SS : check assignment is open\nand late rule
+
+alt not allowed (closed / too late)
+  SS --> UI : error "Submissions closed"
+else allowed
+  SS -> FS : store(file)
+  FS -> FS : check type, real content, size
+  alt invalid file
+    FS --> UI : error "File type not allowed"
+  else valid file
+    FS --> SS : stored file name
+    SS -> DB : save submission (status = submitted, isLate)
+    SS -> NS : notify("Submission received")
+    NS -> DB : save notification
+    SS --> UI : "Submitted successfully"
+  end
+end
+
+Teacher -> SC : open review queue
+SC -> DB : load submissions for teacher's classes
+Teacher -> SS : grade(marks, feedback)
+SS -> DB : update status = graded, save feedback
+SS -> NS : notify student "Graded"
+NS -> DB : save notification
+Student -> UI : view marks and feedback
+@enduml

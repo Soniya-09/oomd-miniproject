@@ -1,0 +1,58 @@
+@startuml 3d-sequence-grade-submission
+!include _style.iuml
+title EduFlow — Sequence Diagram: Teacher reviews, grades or returns work
+autonumber
+
+actor Teacher
+participant "Browser\n(review modal)" as B
+participant ": TeacherController" as TC
+participant ": SubmissionService" as SS
+participant "Policy" as P
+participant "NotificationService" as NS
+database "MySQL" as DB
+participant "Student's browser" as SB
+actor Student
+
+Teacher -> B : open Submissions queue
+B -> TC : GET /api/teacher/submissions?status=to_review
+TC -> DB : SELECT submissions JOIN teacher_assignments\n(only own class + subject)
+TC --> B : queue
+Teacher -> B : click Review
+B -> TC : GET /api/teacher/submissions/{id}
+TC -> SS : teacherView(id)
+SS -> P : submissionFor(id, teacher)
+SS --> B : files, feedback, history
+Teacher -> B : download file
+B -> TC : GET /api/files/submissions/{fileId}
+note right : FileController checks Policy again,\nsends as attachment (octet-stream)
+
+alt Grade
+  Teacher -> B : enter marks + feedback,\n"release now", Save grade
+  B -> TC : POST /api/teacher/submissions/{id}/grade
+  TC -> SS : teacherAction(id, "grade", input)
+  SS -> SS : allowed? submitted | resubmitted |\nunder_review | graded → graded
+  SS -> SS : marks ≤ max_marks
+  group transaction
+    SS -> DB : UPDATE submissions SET status = graded,\nmarks, grade_released
+    SS -> DB : INSERT submission_feedback
+    SS -> DB : INSERT grading_history (old → new, marks)
+  end
+  opt released
+    SS -> NS : send(student, "feedback", "Graded: ...")
+  end
+else Return for revision
+  Teacher -> B : write what to change, Return
+  B -> TC : POST /api/teacher/submissions/{id}/return
+  TC -> SS : teacherAction(id, "return", {feedback})
+  SS -> DB : UPDATE status = returned;\nINSERT feedback (released); INSERT history
+  SS -> NS : send(student, "returned", ...)
+end
+SS --> B : updated submission
+B --> Teacher : toast, modal refreshed
+
+NS -> DB : INSERT IGNORE notifications
+Student -> SB : open notification
+SB -> SS : studentView(id)\n(via StudentController)
+note left : marks and feedback are only\nincluded once released
+SS --> SB : status, released marks, feedback
+@enduml

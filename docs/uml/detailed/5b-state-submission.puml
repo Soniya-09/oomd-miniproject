@@ -1,0 +1,42 @@
+@startuml 5b-state-submission
+!include _style.iuml
+title EduFlow — State Machine: Submission (one per student per assignment)
+
+state "Not submitted" as NotSubmitted : no row yet
+state Missing : deadline passed,\nstill no submission
+state Submitted
+state UnderReview as "Under review" : student can no longer\nreplace files
+state Graded : marks + feedback\n(released or hidden)
+state Returned as "Returned for revision"
+state Resubmitted
+
+[*] --> NotSubmitted : assignment published
+NotSubmitted --> Missing : [now > due_at]
+NotSubmitted --> Submitted : submit\n/ attempt = 1, is_late = false
+Missing --> Submitted : submit [late allowed]\n/ is_late = true
+
+Submitted --> Submitted : replace files\n[before review]
+Submitted --> UnderReview : teacher: review
+Submitted --> Graded : teacher: grade
+Submitted --> Returned : teacher: return\n[feedback given]
+
+UnderReview --> Graded : teacher: grade
+UnderReview --> Returned : teacher: return
+
+Graded --> Graded : regrade / release grade\n/ notify when released
+Graded --> Returned : teacher: return\n(e.g. after student's\nresubmission request)
+
+Returned --> Resubmitted : student: resubmit\n/ attempt + 1
+Resubmitted --> Resubmitted : replace files\n[before review]
+Resubmitted --> UnderReview : teacher: review
+Resubmitted --> Graded : teacher: grade
+Resubmitted --> Returned : teacher: return
+
+Graded --> [*] : assignment closed
+
+note right of Graded
+  Every transition is written to
+  grading_history. Invalid transitions
+  are rejected with HTTP 409.
+end note
+@enduml

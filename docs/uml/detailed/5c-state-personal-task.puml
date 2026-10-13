@@ -1,0 +1,32 @@
+@startuml 5c-state-personal-task
+!include _style.iuml
+title EduFlow — State Machine: Personal task
+
+[*] --> Pending : create
+
+state Open {
+  state Pending
+  state InProgress as "In progress"
+  state Overdue : derived: not completed\nand due_at < now
+
+  Pending -right-> InProgress : start
+  InProgress -left-> Pending : pause
+  Pending -down-> Overdue : [now > due_at]
+  InProgress -down-> Overdue : [now > due_at]
+  Overdue -up-> Pending : move due date later
+}
+
+state Completed : completed_at set
+state Cancelled : excluded from\nevery metric
+state Deleted : soft-deleted;\nreminders removed
+
+Open -down-> Completed : tick checkbox\n/ completed_at = now
+Completed -up-> Pending : reopen\n/ completed_at = null
+Open -down-> Cancelled : cancel
+Cancelled -up-> Pending : reopen
+
+Completed -down-> Deleted : delete
+Cancelled -down-> Deleted : delete
+Open -down-> Deleted : delete
+Deleted --> [*]
+@enduml

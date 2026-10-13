@@ -1,0 +1,92 @@
+[
+  {
+    "probe": "Special characters / HTML in task title",
+    "observed": "Saved and shown literally as '<script>alert('x')</script> Café & \"quotes\" 😀'; script executed: False",
+    "verdict": "OK"
+  },
+  {
+    "probe": "6000-character task notes (limit 5000)",
+    "observed": "Rejected with field error 'Must be at most 5000 characters.'",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Browser Back after logout",
+    "observed": "Ended on /login?next=%2Fstudent",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Refresh after submitting an assignment",
+    "observed": "No resubmission prompt; 1 file listed after refresh",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Direct URLs without logging in",
+    "observed": "/teacher/assignments/1 -> /login?next=%2Fteacher%2Fassignments%2F1; /student/tasks -> /login?next=%2Fstudent%2Ftasks; /admin/settings -> /login?next=%2Fadmin%2Fsettings; /profile -> /login?next=%2Fprofile; /api/admin/users -> {\"error\":\"Please log in to continue.\"}; /api/files/submissions/1 -> {\"error\":\"Please log in to continue.\"}",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Change ids in the URL to another class's assignment / another student's file",
+    "observed": "assignment: {\"error\":\"Assignment not found.\"}; file: {\"error\":\"Not found.\"}",
+    "verdict": "OK"
+  },
+  {
+    "probe": "SQL-like text in user search",
+    "observed": "Table shows: 'No users match these filters.'",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Unicode (Devanagari) name in profile",
+    "observed": "Saved; header shows 'कस\nकबीर सिंह'",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Whitespace-only quick-add",
+    "observed": "Message: 'Type what you need to do first.'",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Login email with leading/trailing spaces",
+    "observed": "Ended on /student",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Negative marks",
+    "observed": "Field error 'Must be at least 0.'",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Upload with upper-case extension (ANSWER_UPPER.PDF)",
+    "observed": "Toast 'Submitted. Your teacher can see it now.'",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Open /login while already logged in",
+    "observed": "Redirected to /teacher",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Responsive layout at 390px (phone)",
+    "observed": "Horizontal overflow: none; sidebar collapsed: True; menu button opens it",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Responsive layout at 768px (tablet)",
+    "observed": "Horizontal overflow: none; sidebar collapsed: True; menu button opens it",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Logout in one tab, then add a task in another",
+    "observed": "Ended on /login?next=%2Fstudent%2Ftasks",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Double-click 'Save as draft' on a new assignment",
+    "observed": "1 assignment(s) created",
+    "verdict": "OK"
+  },
+  {
+    "probe": "Double-click the quick-add Add button",
+    "observed": "2 task(s) created",
+    "verdict": "BUG"
+  }
+]

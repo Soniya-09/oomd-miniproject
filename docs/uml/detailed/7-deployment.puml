@@ -1,0 +1,60 @@
+@startuml 7-deployment
+!include _style.iuml
+title EduFlow — Deployment Diagram
+
+node "User device\n(laptop / phone)" as Client <<device>> {
+  node "Web browser\n(Chrome, Edge, Firefox, Safari)" as Browser <<execution environment>> {
+    artifact "HTML pages" as A_Html
+    artifact "assets/js/*.js\nassets/css/app.css" as A_Js
+  }
+}
+
+node "CDN\ncdn.jsdelivr.net" as CDN <<external>> {
+  artifact "bootstrap@5.3.3\nbootstrap-icons@1.11.3\nchart.js@4.4.4" as A_Cdn
+}
+
+node "Application server\n(Windows/XAMPP or Linux)" as AppServer <<device>> {
+  node "Apache 2.4 + mod_rewrite\nor PHP built-in server (dev)" as Web <<execution environment>> {
+    folder "public/  (document root)" as Public {
+      artifact "index.php\n.htaccess" as A_Index
+      artifact "assets/" as A_Assets
+    }
+  }
+  node "PHP 8.2+ runtime\npdo_mysql · mbstring · fileinfo · openssl" as Php <<execution environment>> {
+    artifact "eduflow application\napp/ · routes/ · resources/ · config/" as A_App
+    artifact ".env\n(DB credentials, APP_URL)" as A_Env
+  }
+  node "Scheduler\n(cron / Task Scheduler)" as Sched <<execution environment>> {
+    artifact "bin/reminders.php\nevery 15 min" as A_Cron
+  }
+  folder "storage/  (not web-accessible)" as Storage {
+    artifact "private_uploads/\n(submissions, materials)" as A_Uploads
+    artifact "logs/" as A_Logs
+  }
+}
+
+node "Database server\n(same host or separate)" as DbServer <<device>> {
+  node "MySQL 8.0" as Mysql <<execution environment>> {
+    database "eduflow\n(31 tables)" as DB
+    database "eduflow_test" as TestDB
+  }
+}
+
+node "Mail server\n(SMTP, optional)" as MailServer <<external>>
+
+Browser --> Web : HTTPS 443\n(session cookie, CSRF token)
+Browser --> CDN : HTTPS 443
+Web --> Php : FastCGI / mod_php
+A_Index ..> A_App : loads
+A_App --> A_Uploads : read / write files
+A_App --> A_Logs
+A_Cron ..> A_App : uses services
+Php --> Mysql : TCP 3306 (PDO)\nleast-privilege DB user
+A_App --> MailServer : password-reset mail\n(MAIL_DRIVER=mail)
+
+note bottom of Storage
+  Back up together with the database.
+  Downloads go through FileController,
+  which checks permissions every time.
+end note
+@enduml

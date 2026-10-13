@@ -1,0 +1,65 @@
+@startuml 3c-sequence-submit-assignment
+!include _style.iuml
+title EduFlow — Sequence Diagram: Student submits an assignment
+autonumber
+
+actor Student
+participant "Browser\n(student.js)" as B
+participant "Router +\nMiddleware" as R
+participant ": StudentController" as SC
+participant ": SubmissionService" as SS
+participant "Policy" as P
+participant "RateLimiter" as RL
+participant "FileStorage" as FS
+participant "NotificationService" as NS
+database "MySQL" as DB
+collections "storage/\nprivate_uploads" as ST
+
+Student -> B : choose file(s), add note, click Submit
+B -> R : POST /api/student/assignments/{id}/submission\nmultipart files[], note, X-CSRF-Token
+R -> R : Authenticate, VerifyCsrf,\nRequireRole(student)
+R -> SC : submit(request)
+SC -> SS : submit(assignmentId, files, note)
+SS -> P : assignmentForStudent(id, student)
+P -> DB : SELECT assignment JOIN recipients\nWHERE status IN (published, closed)
+alt not visible to this student
+  SS --> B : 404
+end
+SS -> SS : check status = published,\nrequires_submission, late policy
+alt closed, or deadline passed and late not allowed
+  SS --> B : 409 with reason
+end
+SS -> RL : enforce("upload", user)
+SS -> DB : SELECT existing submission
+SS -> SS : decide mode:\nnew | update (before review) | resubmit (after return)
+alt graded or under review
+  SS --> B : 409 "cannot be changed right now"
+end
+loop each file
+  SS -> FS : store(file, allowedExt, maxMb)
+  FS -> FS : extension allow-list, real MIME (fileinfo),\nsize limit, no scripts / executables
+  alt invalid
+    FS --> SS : 422 field error
+    SS -> FS : delete files stored so far
+    SS --> B : 422 {errors: {files: ...}}
+  end
+  FS -> ST : save as random 40-hex name
+  FS --> SS : {original_name, stored_name, mime, size}
+end
+group transaction
+  alt new
+    SS -> DB : INSERT submissions (submitted, attempt 1, is_late)
+  else update
+    SS -> DB : DELETE old files of this attempt;\nUPDATE submitted_at, is_late
+  else resubmit
+    SS -> DB : UPDATE status = resubmitted, attempt + 1
+  end
+  SS -> DB : INSERT submission_files
+  SS -> DB : INSERT grading_history
+end
+SS -> NS : send(student, "submission_received", ...)
+SS --> SC : submission id
+SC -> SS : studentView(assignmentId)
+SC --> B : 201 assignment + submission
+B --> Student : "Submitted. Your teacher can see it now."
+@enduml

@@ -1,0 +1,255 @@
+@startuml 2a-class-domain
+!include _style.iuml
+title EduFlow — Class Diagram (domain model)
+hide empty members
+skinparam linetype ortho
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+}
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+enum AssignmentStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED
+  CANCELLED
+}
+enum SubmissionStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  GRADED
+  RETURNED
+  RESUBMITTED
+}
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+class Institution {
+  - id: int
+  - name: string
+  - code: string
+  - kind: school | college
+  - timezone: string
+  - settings: json
+}
+
+abstract class User {
+  - id: int
+  - email: string
+  - passwordHash: string
+  - fullName: string
+  - role: Role
+  - isActive: bool
+  - lastLoginAt: DateTime
+  + login(email, password): bool
+  + changePassword(current, new): void
+}
+class Admin
+class Teacher {
+  - employeeNo: string
+  - designation: string
+}
+class Student {
+  - admissionNo: string
+  - rollNo: string
+  - guardianName: string
+}
+
+class AcademicSession {
+  - name: string
+  - startsOn: Date
+  - endsOn: Date
+  - isCurrent: bool
+}
+class Department {
+  - name: string
+  - code: string
+}
+class SchoolClass as "Class" {
+  - name: string
+  - division: string
+  - isActive: bool
+  + enroll(students): int
+}
+class Subject {
+  - name: string
+  - code: string
+}
+class TeacherAssignment <<association class>>
+class Enrollment <<association class>> {
+  - enrolledAt: DateTime
+}
+
+class Assignment {
+  - title: string
+  - description: text
+  - priority: Priority
+  - dueAt: DateTime
+  - maxMarks: decimal
+  - requiresSubmission: bool
+  - allowedExtensions: string[]
+  - maxUploadMb: int
+  - allowLate: bool
+  - allowResubmission: bool
+  - targetAll: bool
+  - status: AssignmentStatus
+  + publish(): void
+  + close(): void
+  + reopen(): void
+  + cancel(): void
+  + recipients(): Student[]
+}
+class AssignmentAttachment {
+  - originalName: string
+  - storedName: string
+  - mimeType: string
+  - sizeBytes: int
+}
+class Submission {
+  - status: SubmissionStatus
+  - attempt: int
+  - firstSubmittedAt: DateTime
+  - submittedAt: DateTime
+  - isLate: bool
+  - marks: decimal
+  - gradeReleased: bool
+  - resubmissionRequested: bool
+  + grade(marks, feedback, release): void
+  + returnForRevision(feedback): void
+  + resubmit(files): void
+}
+class SubmissionFile {
+  - attempt: int
+  - originalName: string
+  - storedName: string
+  - sizeBytes: int
+}
+class Feedback {
+  - attempt: int
+  - comment: text
+  - isReleased: bool
+}
+class GradingHistory {
+  - oldStatus: string
+  - newStatus: string
+  - oldMarks: decimal
+  - newMarks: decimal
+  - note: string
+}
+
+class PersonalTask {
+  - title: string
+  - description: text
+  - priority: Priority
+  - status: TaskStatus
+  - startsAt: DateTime
+  - dueAt: DateTime
+  - durationMin: int
+  - completedAt: DateTime
+  + complete(): void
+  + reopen(): void
+  + isOverdue(): bool
+}
+class TaskCategory {
+  - name: string
+  - color: string
+}
+class TaskReminder {
+  - remindAt: DateTime
+  - sentAt: DateTime
+}
+
+class Notification {
+  - type: string
+  - title: string
+  - message: string
+  - actionUrl: string
+  - dedupeKey: string
+  - readAt: DateTime
+  + markRead(): void
+}
+class Announcement {
+  - title: string
+  - body: text
+  - audience: institution | classes
+  - publishedAt: DateTime
+  - expiresAt: DateTime
+}
+class Exam {
+  - title: string
+  - startsAt: DateTime
+  - endsAt: DateTime
+  - room: string
+}
+class TimetableEntry {
+  - weekday: 1..7
+  - startTime: Time
+  - endTime: Time
+  - room: string
+}
+class AuditLog {
+  - action: string
+  - entityType: string
+  - entityId: int
+  - details: json
+  - ipAddress: string
+}
+
+User <|-- Admin
+User <|-- Teacher
+User <|-- Student
+
+Institution "1" *-- "*" User
+Institution "1" *-- "*" AcademicSession
+Institution "1" *-- "*" Department
+Institution "1" *-- "*" Subject
+AcademicSession "1" *-- "*" SchoolClass
+Department "0..1" o-- "*" SchoolClass
+Department "0..1" o-- "*" Teacher
+
+SchoolClass "*" -- "*" Student : enrolled
+(SchoolClass, Student) .. Enrollment
+SchoolClass "*" -- "*" Subject : taught by teacher
+(SchoolClass, Subject) .. TeacherAssignment
+TeacherAssignment "*" --> "1" Teacher
+
+Teacher "1" --> "*" Assignment : creates
+Assignment "*" --> "1" SchoolClass
+Assignment "*" --> "1" Subject
+Assignment "*" --> "0..*" Student : targets\n(if not whole class)
+Assignment "1" *-- "*" AssignmentAttachment
+Assignment "1" *-- "*" Submission
+Student "1" --> "*" Submission : submits
+Submission "1" *-- "1..*" SubmissionFile
+Submission "1" *-- "*" Feedback
+Submission "1" *-- "*" GradingHistory
+
+Student "1" *-- "*" PersonalTask
+Student "1" *-- "*" TaskCategory
+TaskCategory "0..1" o-- "*" PersonalTask
+PersonalTask "1" *-- "*" TaskReminder
+
+User "1" *-- "*" Notification
+User "1" --> "*" Announcement : authors
+Announcement "*" --> "*" SchoolClass : targets
+SchoolClass "1" *-- "*" Exam
+Exam "*" --> "1" Subject
+SchoolClass "1" *-- "*" TimetableEntry
+TimetableEntry "*" --> "1" Subject
+User "0..1" --> "*" AuditLog : performs
+
+Assignment ..> AssignmentStatus
+Submission ..> SubmissionStatus
+PersonalTask ..> TaskStatus
+User ..> Role
+@enduml

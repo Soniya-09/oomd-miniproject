@@ -1,0 +1,218 @@
+{
+  "TC01": {
+    "test": "tests/test_01_auth.py::test_tc01_valid_login_admin",
+    "status": "Pass",
+    "actual": "Redirected to /admin; heading 'Overview'",
+    "duration_s": 3.81
+  },
+  "TC02": {
+    "test": "tests/test_01_auth.py::test_tc02_valid_login_teacher",
+    "status": "Pass",
+    "actual": "Redirected to /teacher; heading 'Dashboard'",
+    "duration_s": 3.82
+  },
+  "TC03": {
+    "test": "tests/test_01_auth.py::test_tc03_valid_login_student",
+    "status": "Pass",
+    "actual": "Redirected to /student; 7 summary cards shown",
+    "duration_s": 3.63
+  },
+  "TC04": {
+    "test": "tests/test_01_auth.py::test_tc04_wrong_password",
+    "status": "Pass",
+    "actual": "Stayed on /login; message: 'Incorrect email or password.'",
+    "duration_s": 2.61
+  },
+  "TC05": {
+    "test": "tests/test_01_auth.py::test_tc05_unregistered_email",
+    "status": "Pass",
+    "actual": "Stayed on /login; same generic message: 'Incorrect email or password.'",
+    "duration_s": 3.19
+  },
+  "TC06": {
+    "test": "tests/test_01_auth.py::test_tc06_empty_fields",
+    "status": "Pass",
+    "actual": "Not logged in; message: 'Incorrect email or password.'",
+    "duration_s": 3.16
+  },
+  "TC07": {
+    "test": "tests/test_01_auth.py::test_tc07_email_case_insensitive",
+    "status": "Pass",
+    "actual": "Upper-case email accepted; redirected to /student",
+    "duration_s": 3.96
+  },
+  "TC08": {
+    "test": "tests/test_01_auth.py::test_tc08_lockout_after_five_failures",
+    "status": "Pass",
+    "actual": "5 failures accepted as errors; 6th (correct password) refused: 'Too many login attempts. Please wait 15 minutes and try again.'",
+    "duration_s": 9.97
+  },
+  "TC09": {
+    "test": "tests/test_01_auth.py::test_tc09_logout_ends_session",
+    "status": "Pass",
+    "actual": "After logout at /login; reopening /student redirected to /login?next=%2Fstudent",
+    "duration_s": 6.35
+  },
+  "TC10": {
+    "test": "tests/test_01_auth.py::test_tc10_direct_url_without_login",
+    "status": "Pass",
+    "actual": "Redirected to /login?next=%2Fadmin%2Fusers",
+    "duration_s": 2.14
+  },
+  "TC11": {
+    "test": "tests/test_01_auth.py::test_tc11_student_cannot_open_admin_page",
+    "status": "Pass",
+    "actual": "Page shows '403 \u00b7 Access denied'",
+    "duration_s": 4.39
+  },
+  "TC12": {
+    "test": "tests/test_01_auth.py::test_tc12_forgot_password_valid_email",
+    "status": "Pass",
+    "actual": "Redirected to /login with notice: 'If an account exists for that email, a reset link has been sent. It expires in 1 hour.'",
+    "duration_s": 2.21
+  },
+  "TC13": {
+    "test": "tests/test_01_auth.py::test_tc13_forgot_password_invalid_email",
+    "status": "Pass",
+    "actual": "Message: 'Enter a valid email address.'",
+    "duration_s": 2.27
+  },
+  "TC14": {
+    "test": "tests/test_01_auth.py::test_tc14_reset_with_invalid_token",
+    "status": "Pass",
+    "actual": "Message: 'This reset link is invalid or has expired.'; link offered: 'Request a new link'",
+    "duration_s": 2.11
+  },
+  "TC15": {
+    "test": "tests/test_02_admin.py::test_tc15_admin_creates_student",
+    "status": "Pass",
+    "actual": "Toast 'Account created.'; student found by admission number",
+    "duration_s": 9.44
+  },
+  "TC16": {
+    "test": "tests/test_02_admin.py::test_tc16_duplicate_email",
+    "status": "Pass",
+    "actual": "Field error: 'An account with this email already exists.'",
+    "duration_s": 6.22
+  },
+  "TC17": {
+    "test": "tests/test_02_admin.py::test_tc17_password_seven_characters",
+    "status": "Pass",
+    "actual": "Field error: 'Password must be at least 8 characters.'",
+    "duration_s": 6.26
+  },
+  "TC18": {
+    "test": "tests/test_02_admin.py::test_tc18_password_eight_characters",
+    "status": "Pass",
+    "actual": "8-character password accepted; toast 'Account created.'",
+    "duration_s": 7.14
+  },
+  "TC19": {
+    "test": "tests/test_02_admin.py::test_tc19_admin_creates_class",
+    "status": "Pass",
+    "actual": "Toast 'Class created.'; 'SY BSc CS C' listed",
+    "duration_s": 5.51
+  },
+  "TC20": {
+    "test": "tests/test_02_admin.py::test_tc20_admin_searches_users",
+    "status": "Pass",
+    "actual": "Results: ['Meera Kulkarni']",
+    "duration_s": 5.59
+  },
+  "TC21": {
+    "test": "tests/test_02_admin.py::test_tc21_deactivate_user_blocks_login",
+    "status": "Pass",
+    "actual": "Status 'Deactivated' shown; login message: 'This account has been deactivated. Contact your administrator.'",
+    "duration_s": 8.6
+  },
+  "TC22": {
+    "test": "tests/test_03_teacher.py::test_tc22_create_and_publish_assignment",
+    "status": "Pass",
+    "actual": "Assignment page opened: 'Recursion practice set' with Published badge",
+    "duration_s": 6.57
+  },
+  "TC23": {
+    "test": "tests/test_03_teacher.py::test_tc23_assignment_required_fields",
+    "status": "Fail",
+    "actual": "Title: 'This field is required.', Instructions: 'This field is required.', Class & subject: 'no message', top banner: 'This field is required. This field is required.'",
+    "duration_s": 6.2
+  },
+  "TC24": {
+    "test": "tests/test_03_teacher.py::test_tc24_publish_without_due_date",
+    "status": "Pass",
+    "actual": "Field error: 'Set a due date before publishing an assignment that needs a submission.'",
+    "duration_s": 6.71
+  },
+  "TC25": {
+    "test": "tests/test_03_teacher.py::test_tc25_marks_above_maximum",
+    "status": "Pass",
+    "actual": "Field error: 'Marks cannot exceed 20.'",
+    "duration_s": 6.87
+  },
+  "TC26": {
+    "test": "tests/test_03_teacher.py::test_tc26_grade_submission",
+    "status": "Pass",
+    "actual": "Toast 'Grade saved.'; status badge 'Graded', marks 18 / 20",
+    "duration_s": 7.15
+  },
+  "TC27": {
+    "test": "tests/test_04_student.py::test_tc27_submit_valid_pdf",
+    "status": "Pass",
+    "actual": "Toast 'Submitted. Your teacher can see it now.'; card shows 'Your submission\nSubmitted' and answer.pdf",
+    "duration_s": 6.38
+  },
+  "TC28": {
+    "test": "tests/test_04_student.py::test_tc28_reject_txt_file",
+    "status": "Pass",
+    "actual": "Field error: '\"notes.txt\" is not an allowed file type. Allowed: pdf, docx.'; status still 'Not submitted'",
+    "duration_s": 5.76
+  },
+  "TC29": {
+    "test": "tests/test_04_student.py::test_tc29_quick_add_task",
+    "status": "Pass",
+    "actual": "Preview 'Revise OS notes'; toast 'Added \"Revise OS notes\".'; listed with High priority",
+    "duration_s": 5.37
+  },
+  "TC30": {
+    "test": "tests/test_04_student.py::test_tc30_complete_personal_task",
+    "status": "Pass",
+    "actual": "'Revise OS notes' ticked; toast 'Nice \u2014 marked complete.'; now in Completed list",
+    "duration_s": 5.66
+  },
+  "TC31": {
+    "test": "tests/test_04_student.py::test_tc31_task_title_max_length",
+    "status": "Pass",
+    "actual": "Typed 250 characters, field kept 200; toast 'Task added.'",
+    "duration_s": 5.23
+  },
+  "TC32": {
+    "test": "tests/test_04_student.py::test_tc32_dashboard_card_navigation",
+    "status": "Pass",
+    "actual": "Overdue card (1) opened /student/tasks?status=overdue with filter 'Overdue'",
+    "duration_s": 3.92
+  },
+  "TC33": {
+    "test": "tests/test_04_student.py::test_tc33_mark_all_notifications_read",
+    "status": "Pass",
+    "actual": "Badge was 5; toast 'Marked 5 as read.'; badge hidden, no unread items",
+    "duration_s": 5.02
+  },
+  "TC34": {
+    "test": "tests/test_04_student.py::test_tc34_calendar_views",
+    "status": "Pass",
+    "actual": "Month grid with 42 days and 74 events; agenda view shows 24 days",
+    "duration_s": 4.87
+  },
+  "TC35": {
+    "test": "tests/test_04_student.py::test_tc35_progress_charts_and_filter",
+    "status": "Pass",
+    "actual": "5 charts rendered, no errors; range 'Oct 1, 2026 \u2013 Oct 31, 2026' changed to 'Oct 12, 2026 \u2013 Oct 18, 2026'",
+    "duration_s": 5.18
+  },
+  "TC36": {
+    "test": "tests/test_04_student.py::test_tc36_profile_update_and_wrong_password",
+    "status": "Pass",
+    "actual": "Toast 'Profile saved.'; name persisted after refresh; password error 'Current password is incorrect.'",
+    "duration_s": 5.85
+  }
+}

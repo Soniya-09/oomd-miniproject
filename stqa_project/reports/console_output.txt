@@ -1,0 +1,114 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.1, pytest-8.3.4, pluggy-1.6.0 -- D:\oomd-miniproject\stqa_project\.venv\Scripts\python.exe
+metadata: {'Python': '3.13.1', 'Platform': 'Windows-11-10.0.26100-SP0', 'Packages': {'pytest': '8.3.4', 'pluggy': '1.6.0'}, 'Plugins': {'html': '4.1.1', 'metadata': '3.1.1'}, 'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-21'}
+rootdir: D:\oomd-miniproject\stqa_project
+configfile: pytest.ini
+testpaths: tests
+plugins: html-4.1.1, metadata-3.1.1
+collecting ... collected 36 items
+
+tests/test_01_auth.py::test_tc01_valid_login_admin PASSED                [  2%]
+tests/test_01_auth.py::test_tc02_valid_login_teacher PASSED              [  5%]
+tests/test_01_auth.py::test_tc03_valid_login_student PASSED              [  8%]
+tests/test_01_auth.py::test_tc04_wrong_password PASSED                   [ 11%]
+tests/test_01_auth.py::test_tc05_unregistered_email PASSED               [ 13%]
+tests/test_01_auth.py::test_tc06_empty_fields PASSED                     [ 16%]
+tests/test_01_auth.py::test_tc07_email_case_insensitive PASSED           [ 19%]
+tests/test_01_auth.py::test_tc08_lockout_after_five_failures PASSED      [ 22%]
+tests/test_01_auth.py::test_tc09_logout_ends_session PASSED              [ 25%]
+tests/test_01_auth.py::test_tc10_direct_url_without_login PASSED         [ 27%]
+tests/test_01_auth.py::test_tc11_student_cannot_open_admin_page PASSED   [ 30%]
+tests/test_01_auth.py::test_tc12_forgot_password_valid_email PASSED      [ 33%]
+tests/test_01_auth.py::test_tc13_forgot_password_invalid_email PASSED    [ 36%]
+tests/test_01_auth.py::test_tc14_reset_with_invalid_token PASSED         [ 38%]
+tests/test_02_admin.py::test_tc15_admin_creates_student PASSED           [ 41%]
+tests/test_02_admin.py::test_tc16_duplicate_email PASSED                 [ 44%]
+tests/test_02_admin.py::test_tc17_password_seven_characters PASSED       [ 47%]
+tests/test_02_admin.py::test_tc18_password_eight_characters PASSED       [ 50%]
+tests/test_02_admin.py::test_tc19_admin_creates_class PASSED             [ 52%]
+tests/test_02_admin.py::test_tc20_admin_searches_users PASSED            [ 55%]
+tests/test_02_admin.py::test_tc21_deactivate_user_blocks_login PASSED    [ 58%]
+tests/test_03_teacher.py::test_tc22_create_and_publish_assignment PASSED [ 61%]
+tests/test_03_teacher.py::test_tc23_assignment_required_fields FAILED    [ 63%]
+tests/test_03_teacher.py::test_tc24_publish_without_due_date PASSED      [ 66%]
+tests/test_03_teacher.py::test_tc25_marks_above_maximum PASSED           [ 69%]
+tests/test_03_teacher.py::test_tc26_grade_submission PASSED              [ 72%]
+tests/test_04_student.py::test_tc27_submit_valid_pdf PASSED              [ 75%]
+tests/test_04_student.py::test_tc28_reject_txt_file PASSED               [ 77%]
+tests/test_04_student.py::test_tc29_quick_add_task PASSED                [ 80%]
+tests/test_04_student.py::test_tc30_complete_personal_task PASSED        [ 83%]
+tests/test_04_student.py::test_tc31_task_title_max_length PASSED         [ 86%]
+tests/test_04_student.py::test_tc32_dashboard_card_navigation PASSED     [ 88%]
+tests/test_04_student.py::test_tc33_mark_all_notifications_read PASSED   [ 91%]
+tests/test_04_student.py::test_tc34_calendar_views PASSED                [ 94%]
+tests/test_04_student.py::test_tc35_progress_charts_and_filter PASSED    [ 97%]
+tests/test_04_student.py::test_tc36_profile_update_and_wrong_password PASSED [100%]
+
+================================== FAILURES ===================================
+____________________ test_tc23_assignment_required_fields _____________________
+
+app = <helpers.App object at 0x000001E974D36FD0>
+actual = <function actual.<locals>.record at 0x000001E974D12660>
+
+    def test_tc23_assignment_required_fields(app, actual):
+        new_assignment_form(app)
+        app.modal_submit()  # "Save as draft" with nothing filled in
+        app.modal_error("title")  # wait for the validation response
+        errors = {
+            f: app.driver.find_element(By.CSS_SELECTOR, f".modal.show [data-error-for='{f}']").text
+            for f in ("title", "description", "teaching")
+        }
+        banner = app.driver.find_element(By.CSS_SELECTOR, ".modal.show [data-form-error]")
+        banner_text = banner.text if banner.is_displayed() else ""
+        app.shot("TC23_required_fields")
+        observed = (f"Title: '{errors['title']}', Instructions: '{errors['description']}', "
+                    f"Class & subject: '{errors['teaching'] or 'no message'}', top banner: '{banner_text or 'none'}'")
+        actual(observed)
+>       assert all(e == "This field is required." for e in errors.values()), observed
+E       AssertionError: Title: 'This field is required.', Instructions: 'This field is required.', Class & subject: 'no message', top banner: 'This field is required. This field is required.'
+E       assert False
+E        +  where False = all(<generator object test_tc23_assignment_required_fields.<locals>.<genexpr> at 0x000001E974D2ACF0>)
+
+tests\test_03_teacher.py:67: AssertionError
+============================ EduFlow STQA summary =============================
+Total: 36   Passed: 35   Failed: 1   Pass rate: 97.2%
+  TC01: Pass
+  TC02: Pass
+  TC03: Pass
+  TC04: Pass
+  TC05: Pass
+  TC06: Pass
+  TC07: Pass
+  TC08: Pass
+  TC09: Pass
+  TC10: Pass
+  TC11: Pass
+  TC12: Pass
+  TC13: Pass
+  TC14: Pass
+  TC15: Pass
+  TC16: Pass
+  TC17: Pass
+  TC18: Pass
+  TC19: Pass
+  TC20: Pass
+  TC21: Pass
+  TC22: Pass
+  TC23: Fail
+  TC24: Pass
+  TC25: Pass
+  TC26: Pass
+  TC27: Pass
+  TC28: Pass
+  TC29: Pass
+  TC30: Pass
+  TC31: Pass
+  TC32: Pass
+  TC33: Pass
+  TC34: Pass
+  TC35: Pass
+  TC36: Pass
+- Generated html report: file:///D:/oomd-miniproject/stqa_project/reports/test_report.html -
+=========================== short test summary info ===========================
+FAILED tests/test_03_teacher.py::test_tc23_assignment_required_fields - Asser...
+================== 1 failed, 35 passed in 497.63s (0:08:17) ===================

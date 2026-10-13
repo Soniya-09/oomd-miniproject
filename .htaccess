@@ -1,0 +1,10 @@
+# The web root must be public/. If Apache is pointed at the project root by mistake,
+# send everything to public/ and never serve source, .env or storage directly.
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^(\.env|\.git|app|bin|config|database|resources|routes|storage|tests)(/|$) - [F,L]
+	RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+<IfModule !mod_rewrite.c>
+	Require all denied
+</IfModule>

@@ -1,32 +1,60 @@
-@startuml
+@startuml 4-activity
+!include _style.iuml
+title EduFlow — Activity Diagram: Assignment process
+
+|Teacher|
 start
-if (Logged in?) then (no)
-  :Log in or sign up;
+:Create assignment\n(title, class, subject, due date, marks);
+:Attach study material (optional);
+if (Publish now?) then (yes)
+else (no)
+  :Save as draft;
+  :Publish later;
 endif
-if (How will the task be added?) then (type or speak)
-  :Send sentence to server;
-  :Gemini parses task fields;
-  if (Parse succeeded?) then (yes)
-    :Show parsed fields for review;
-    if (User wants changes?) then (yes)
-      :Edit fields in form;
-    endif
-  else (no)
-    :Open form, keep raw sentence;
-    :Edit fields in form;
+
+|System|
+:Make assignment visible to class;
+:Send notification to students;
+
+|Student|
+:Open assignment and read instructions;
+:Upload work;
+
+|System|
+if (Deadline passed?) then (yes)
+  if (Late submission allowed?) then (no)
+    :Reject submission;
+    stop
+  else (yes)
+    :Mark as late;
   endif
-else (fill a form)
-  :Edit fields in form;
+else (no)
 endif
-while (Title set and duration_min > 0?) is (no)
-  :Show validation error;
-  :Edit fields in form;
-endwhile (yes)
-:Save Nova Task;
-fork
-  :Refresh task list;
-fork again
-  :Recompute day plan (planned);
-end fork
-stop
+if (File type and size valid?) then (no)
+  :Show error;
+  |Student|
+  :Upload correct file;
+  |System|
+else (yes)
+endif
+:Save submission;
+:Notify student "Submission received";
+
+|Teacher|
+:Review submission;
+if (Work acceptable?) then (yes)
+  :Give marks and feedback;
+  |System|
+  :Notify student "Graded";
+  |Student|
+  :View grade and feedback;
+  stop
+else (no)
+  :Return for revision with comments;
+  |Student|
+  :Resubmit improved work;
+  |Teacher|
+  :Grade resubmission;
+  stop
+endif
 @enduml

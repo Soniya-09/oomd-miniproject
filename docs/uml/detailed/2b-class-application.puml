@@ -1,0 +1,228 @@
+@startuml 2b-class-application
+!include _style.iuml
+title EduFlow — Class Diagram (application layer)
+hide empty members
+left to right direction
+
+package "Core" {
+  class Kernel {
+    - router: Router
+    + handle(request: Request): Response
+  }
+  class Router {
+    - routes: array
+    + get/post/patch/delete(path, handler, middleware)
+    + group(middleware, fn)
+    + dispatch(request: Request): Response
+  }
+  class Request {
+    + method: string
+    + path: string
+    + params: array
+    + input(): array
+    + uploadedFiles(field): array
+    + ip(): string
+  }
+  class Response {
+    + status: int
+    + body: string
+    + {static} json(data, status): Response
+    + {static} redirect(to): Response
+    + {static} download(path, name, mime): Response
+    + {static} csv(name, header, rows): Response
+    + send(): void
+  }
+  class Database <<singleton>> {
+    - pdo: PDO
+    + {static} get(): Database
+    + run(sql, params): PDOStatement
+    + one(sql, params): array
+    + all(sql, params): array
+    + insert(table, data): int
+    + update(table, data, where, params): int
+    + transaction(fn): mixed
+  }
+  class Auth <<static>> {
+    + {static} user(): array
+    + {static} login(user): void
+    + {static} logout(): void
+    + {static} is(roles...): bool
+  }
+  class Session <<static>>
+  class Csrf <<static>> {
+    + {static} token(): string
+    + {static} valid(token): bool
+  }
+  class Validator <<static>> {
+    + {static} make(input, rules): array
+  }
+  class RateLimiter <<static>> {
+    + {static} hit(key, max, window): bool
+  }
+  class View <<static>> {
+    + {static} render(view, data): string
+  }
+  class Paginator {
+    + page: int
+    + perPage: int
+    + run(select, from, params, order): array
+  }
+  class HttpException {
+    + status: int
+    + errors: array
+  }
+}
+
+package "Middleware" {
+  interface Middleware {
+    + handle(request, next): Response
+  }
+  class Authenticate
+  class RequireRole {
+    - roles: string[]
+  }
+  class VerifyCsrf
+  class RedirectIfAuthenticated
+}
+
+package "Controllers" {
+  class AuthController
+  class PageController
+  class AdminController
+  class TeacherController
+  class StudentController
+  class StudentWorkController
+  class SharedController
+  class NotificationController
+  class FileController
+  class ReportController
+}
+
+package "Services" {
+  class Policy <<static>> {
+    + {static} teaches(teacher, class, subject): bool
+    + {static} assignmentForTeacher(id, teacher): array
+    + {static} assignmentForStudent(id, student): array
+    + {static} submissionFor(id, user): array
+  }
+  class AuthService {
+    + attempt(email, password, ip): array
+    + requestReset(email, ip): string
+    + resetPassword(token, password): void
+  }
+  class UserService {
+    + create(input): int
+    + update(id, input, actor): void
+    + importCsv(path): array
+  }
+  class AcademicService
+  class AssignmentService {
+    + create(input): int
+    + update(id, input): void
+    + transition(id, action): string
+    + addAttachments(id, files): int[]
+    + roster(assignment): array
+  }
+  class SubmissionService {
+    + submit(assignmentId, files, note): int
+    + teacherAction(id, action, input): array
+    + requestResubmission(assignmentId, reason): void
+    + studentView(assignmentId): array
+  }
+  class PersonalTaskService {
+    + create(input): int
+    + update(id, input): array
+    + delete(id): void
+    + list(paginator, filters, order): array
+  }
+  class StudentWork {
+    + items(): array
+    + {static} eligible(items): array
+    + {static} byUrgency(a, b): int
+  }
+  class AnalyticsService {
+    + studentDashboard(student, tz): array
+    + studentProgress(student, tz, filters): array
+    + teacherAnalytics(teacher, class): array
+    + adminAnalytics(institution, tz): array
+  }
+  class NotificationService <<static>> {
+    + {static} send(users, type, title, msg, ..., dedupeKey): int
+  }
+  class AnnouncementService
+  class CalendarService {
+    + events(from, to): array
+  }
+  class ScheduleService
+  class ReminderService {
+    + run(): array
+  }
+  class FileStorage <<static>> {
+    + {static} store(file, allowedExt, maxMb): array
+    + {static} path(storedName): string
+  }
+  class AuditLog <<static>> {
+    + {static} record(action, entity, id, details)
+  }
+  class Mailer <<static>>
+}
+
+package "Repositories" {
+  class UserRepository
+  class Recipients {
+    + {static} SQL: string
+  }
+}
+
+Kernel *-- Router
+Kernel ..> Request
+Kernel ..> Response
+Kernel ..> HttpException : catches
+Router ..> Middleware : runs
+Router ..> Controllers : dispatches to
+Middleware <|.. Authenticate
+Middleware <|.. RequireRole
+Middleware <|.. VerifyCsrf
+Middleware <|.. RedirectIfAuthenticated
+VerifyCsrf ..> Csrf
+Authenticate ..> Auth
+Auth ..> Session
+Auth ..> Database
+
+AuthController ..> AuthService
+AdminController ..> UserService
+AdminController ..> AcademicService
+TeacherController ..> AssignmentService
+TeacherController ..> SubmissionService
+StudentController ..> SubmissionService
+StudentWorkController ..> PersonalTaskService
+StudentWorkController ..> AnalyticsService
+SharedController ..> CalendarService
+SharedController ..> AnnouncementService
+SharedController ..> ScheduleService
+ReportController ..> AnalyticsService
+FileController ..> Policy
+FileController ..> FileStorage
+
+AssignmentService ..> Policy
+AssignmentService ..> NotificationService
+AssignmentService ..> FileStorage
+SubmissionService ..> Policy
+SubmissionService ..> FileStorage
+SubmissionService ..> NotificationService
+SubmissionService ..> RateLimiter
+AnalyticsService ..> StudentWork
+CalendarService ..> StudentWork
+CalendarService ..> AnnouncementService
+ReminderService ..> NotificationService
+ReminderService ..> AnnouncementService
+AuthService ..> RateLimiter
+AuthService ..> Mailer
+AuthService ..> UserRepository
+UserService ..> UserRepository
+StudentWork ..> Recipients
+Policy ..> Recipients
+Services ..> Database
+Services ..> Validator
+Services ..> AuditLog
+@enduml

@@ -1,0 +1,52 @@
+@startuml 4b-activity-personal-task
+!include _style.iuml
+title EduFlow — Activity Diagram: Quick-add and complete a personal task
+
+|Student|
+start
+:Type a sentence in Quick add\ne.g. "Gym tomorrow 7am for 1 hour high priority @gym";
+|Browser (tasks.js)|
+:Parse sentence;
+fork
+  :Find priority words\n("urgent", "high priority", "!!");
+fork again
+  :Find place ("@gym", "at library");
+fork again
+  :Find duration ("for 1 hour", "30 min");
+fork again
+  :Find deadline ("by friday 5pm")\nand start time ("tomorrow 7am");
+end fork
+:Convert institution-local time to UTC;
+:Show preview chips;
+|Student|
+if (Preview looks right?) then (no)
+  :Edit sentence or open detailed form;
+  stop
+else (yes)
+  :Press Add;
+endif
+|Server|
+:Validate fields;
+if (Valid?) then (no)
+  :Return 422 with message;
+  |Browser (tasks.js)|
+  :Show error under the input;
+  stop
+else (yes)
+endif
+:Save task (owner = this student, status = pending);
+if (Reminder time given?) then (yes)
+  :Save reminder;
+endif
+|Browser (tasks.js)|
+:Refresh dashboard and list;
+|Student|
+:Work on task;
+:Tick the checkbox;
+|Server|
+:Set status = completed, completed_at = now;
+note right: Academic records are never touched
+|Browser (tasks.js)|
+:Update cards and charts;
+stop
+@enduml

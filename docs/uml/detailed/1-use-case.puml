@@ -1,0 +1,120 @@
+@startuml 1-use-case
+!include _style.iuml
+title EduFlow — Use Case Diagram
+left to right direction
+
+actor "Admin" as Admin
+actor "Teacher" as Teacher
+actor "Student" as Student
+actor "User" as User
+actor "Scheduler\n(cron job)" as Cron <<system>>
+actor "Mail server" as Mail <<external>>
+
+User <|-- Admin
+User <|-- Teacher
+User <|-- Student
+
+rectangle "EduFlow Portal" {
+  package "Account" {
+    usecase "Log in" as UC_Login
+    usecase "Log out" as UC_Logout
+    usecase "Reset forgotten password" as UC_Reset
+    usecase "Update profile / change password" as UC_Profile
+    usecase "Read & manage notifications" as UC_Notif
+    usecase "Read announcements" as UC_ReadAnn
+  }
+
+  package "Administration" {
+    usecase "Manage user accounts\n(create, edit, deactivate)" as UC_Users
+    usecase "Import users from CSV" as UC_Import
+    usecase "Manage sessions, departments,\nclasses & subjects" as UC_Structure
+    usecase "Enroll students in classes" as UC_Enroll
+    usecase "Assign teachers to\nclass & subject" as UC_AssignT
+    usecase "Manage weekly timetable" as UC_Timetable
+    usecase "Configure institution settings" as UC_Settings
+    usecase "View audit log" as UC_Audit
+    usecase "View institution analytics" as UC_AdminAnalytics
+  }
+
+  package "Teaching" {
+    usecase "Create assignment" as UC_Create
+    usecase "Publish / close /\ncancel assignment" as UC_Publish
+    usecase "Attach learning materials" as UC_Attach
+    usecase "Review submissions" as UC_Review
+    usecase "Grade & give feedback" as UC_Grade
+    usecase "Return for revision" as UC_Return
+    usecase "Schedule exam" as UC_Exam
+    usecase "View class analytics" as UC_TAnalytics
+  }
+
+  package "Learning & productivity" {
+    usecase "View assignments" as UC_ViewA
+    usecase "Download materials" as UC_Download
+    usecase "Submit / resubmit work" as UC_Submit
+    usecase "Request resubmission" as UC_ReqResub
+    usecase "View grade & feedback" as UC_ViewGrade
+    usecase "Manage personal tasks" as UC_Tasks
+    usecase "Quick-add task from a sentence" as UC_SmartAdd
+    usecase "Set task reminder" as UC_Remind
+    usecase "View calendar" as UC_Calendar
+    usecase "View productivity dashboard" as UC_Progress
+  }
+
+  usecase "Post announcement" as UC_PostAnn
+  usecase "Export CSV report" as UC_Export
+  usecase "Validate uploaded file" as UC_Validate
+  usecase "Notify recipients" as UC_Notify
+  usecase "Send deadline & task reminders" as UC_Reminders
+}
+
+User --> UC_Login
+User --> UC_Logout
+User --> UC_Profile
+User --> UC_ReadAnn
+UC_Reset .> UC_Login : <<extend>>
+UC_Reset --> Mail
+
+Admin --> UC_Users
+Admin --> UC_Structure
+Admin --> UC_Enroll
+Admin --> UC_AssignT
+Admin --> UC_Timetable
+Admin --> UC_Settings
+Admin --> UC_Audit
+Admin --> UC_AdminAnalytics
+Admin --> UC_PostAnn
+Admin --> UC_Export
+Admin --> UC_Exam
+UC_Import .> UC_Users : <<extend>>
+
+Teacher --> UC_Create
+Teacher --> UC_Publish
+Teacher --> UC_Attach
+Teacher --> UC_Review
+Teacher --> UC_Grade
+Teacher --> UC_Exam
+Teacher --> UC_TAnalytics
+Teacher --> UC_PostAnn
+Teacher --> UC_Export
+Teacher --> UC_Notif
+UC_Return .> UC_Grade : <<extend>>
+UC_Publish ..> UC_Notify : <<include>>
+UC_Attach ..> UC_Validate : <<include>>
+
+Student --> UC_ViewA
+Student --> UC_Download
+Student --> UC_Submit
+Student --> UC_ViewGrade
+Student --> UC_Tasks
+Student --> UC_Calendar
+Student --> UC_Progress
+Student --> UC_Notif
+UC_Submit ..> UC_Validate : <<include>>
+UC_ReqResub .> UC_ViewGrade : <<extend>>
+UC_SmartAdd .> UC_Tasks : <<extend>>
+UC_Remind .> UC_Tasks : <<extend>>
+UC_PostAnn ..> UC_Notify : <<include>>
+
+Cron --> UC_Reminders
+UC_Reminders ..> UC_Notify : <<include>>
+@enduml

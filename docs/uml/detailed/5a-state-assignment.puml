@@ -1,0 +1,29 @@
+@startuml 5a-state-assignment
+!include _style.iuml
+title EduFlow — State Machine: Assignment (publication state)
+
+[*] --> Draft : teacher saves\n/ create()
+
+state Draft : invisible to students\nall fields editable
+state Published : visible to recipients\naccepts submissions
+state Closed : visible, read-only\nno new submissions
+state Cancelled : hidden from students\nfinal
+
+Draft --> Draft : edit
+Draft --> Published : publish\n[due date set if submission required]\n/ published_at = now,\nnotify recipients
+Draft --> Cancelled : cancel
+
+Published --> Published : edit\n/ new recipients notified;\ndeadline change notified
+Published --> Closed : close\n/ closed_at = now
+Published --> Cancelled : cancel\n/ notify recipients
+
+Closed --> Published : reopen
+
+Cancelled --> [*]
+
+note bottom of Published
+  Each student's submission has its own
+  state machine (see 5b). Publication
+  state and submission state are separate.
+end note
+@enduml

@@ -1,0 +1,58 @@
+@startuml 3b-sequence-publish-assignment
+!include _style.iuml
+title EduFlow — Sequence Diagram: Teacher creates and publishes an assignment
+autonumber
+
+actor Teacher
+participant "Browser\n(teacher.js)" as B
+participant "Router +\nMiddleware" as R
+participant ": TeacherController" as TC
+participant ": AssignmentService" as AS
+participant "Policy" as P
+participant ": Validator" as V
+participant "NotificationService" as NS
+database "MySQL" as DB
+actor Student
+
+Teacher -> B : fill "New assignment" form,\nclick "Save & publish"
+B -> R : POST /api/teacher/assignments\n{title, class_id, subject_id, due_at, ..., publish: true}\nX-CSRF-Token
+R -> R : Authenticate, VerifyCsrf,\nRequireRole(teacher)
+R -> TC : store(request)
+TC -> AS : create(input)
+AS -> V : make(input, rules)
+V --> AS : clean data (or 422 field errors)
+AS -> P : teaches(teacher, class, subject)?
+P -> DB : SELECT FROM teacher_assignments
+alt teacher does not teach this class + subject
+  AS --> B : 422 "You do not teach this subject to this class."
+else in scope
+  AS -> AS : checkPublishable()\n(due date set when submission required)
+  group transaction
+    AS -> DB : INSERT assignments (status = draft)
+    opt targeted students
+      AS -> DB : INSERT assignment_targets
+    end
+  end
+  AS -> AS : transition(id, "publish")
+  AS -> DB : UPDATE assignments\nSET status = published, published_at = now\nWHERE status = draft
+  AS -> DB : INSERT audit_logs
+  AS -> DB : SELECT recipients\n(enrolled students ∩ targets, active)
+  AS -> NS : send(recipients, "assignment_new", ...,\ndedupeKey "assignment:{id}:published")
+  loop each recipient
+    NS -> DB : INSERT IGNORE notifications
+  end
+  AS --> TC : id
+  TC --> B : 201 {id}
+  B --> Teacher : toast "Published. Students notified."\nopen assignment page
+end
+
+...later...
+Student -> B : open dashboard
+B -> R : GET /api/notifications/unread-count
+R --> B : {count: 1}
+Student -> B : open /student/assignments/{id}
+B -> R : GET /api/student/assignments/{id}
+R -> P : assignmentForStudent(id, student)
+note right : 404 if draft, cancelled\nor not addressed to them
+R --> B : assignment, materials, own status
+@enduml

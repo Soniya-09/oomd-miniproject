@@ -1,0 +1,27 @@
+@startuml 5d-state-user-account
+!include _style.iuml
+title EduFlow — State Machine: User account and session
+
+[*] --> Active : admin creates account\nor CSV import
+
+state Active {
+  [*] --> LoggedOut
+  state LoggedOut as "Logged out"
+  state LoggedIn as "Logged in" : session id regenerated;\nuser re-checked every request
+  state Throttled : 5 failed logins per\nemail+IP in 15 min
+  state ResetPending as "Reset requested" : one-time link,\nvalid 1 hour
+
+  LoggedOut --> LoggedIn : correct password
+  LoggedOut --> LoggedOut : wrong password\n/ count failure
+  LoggedOut --> Throttled : [failures ≥ 5]
+  Throttled --> LoggedOut : after 15 minutes
+  LoggedIn --> LoggedOut : log out / idle timeout
+  LoggedOut --> ResetPending : forgot password\n/ email link
+  ResetPending --> LoggedOut : set new password\n/ token used
+  ResetPending --> LoggedOut : link expires
+}
+
+Active --> Deactivated : admin deactivates\n/ existing sessions stop working
+Deactivated --> Active : admin reactivates
+state Deactivated : cannot log in;\nrecords kept
+@enduml

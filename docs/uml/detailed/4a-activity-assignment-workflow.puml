@@ -1,0 +1,69 @@
+@startuml 4a-activity-assignment-workflow
+!include _style.iuml
+title EduFlow — Activity Diagram: Assignment workflow (create → submit → grade)
+
+|Teacher|
+start
+:Create assignment\n(title, instructions, class & subject,\ndue date, marks, file rules);
+:Attach learning materials (optional);
+if (Publish now?) then (no)
+  :Save as draft;
+  note right: Drafts are invisible to students
+  :Review and publish later;
+else (yes)
+endif
+|System|
+while (Due date missing for an assignment\nthat needs a submission?) is (yes)
+  :Reject with field error;
+  |Teacher|
+  :Set a due date;
+  |System|
+endwhile (no)
+:Set status = published;
+:Find recipients\n(enrolled students, or selected students);
+:Create one notification per recipient\n(de-duplicated);
+
+|Student|
+:See notification and open assignment;
+:Read instructions, download materials;
+repeat
+  :Choose files and submit;
+  |System|
+  :Check assignment is open\nand the late-submission rule;
+  :Validate each file\n(allowed type, real content, size);
+repeat while (Submission accepted?) is (no — show reason)
+-> yes;
+:Store files privately with random names;
+:Record submission\n(attempt, timestamp, late flag);
+:Notify student "Submission received";
+
+|Teacher|
+:Open review queue;
+:Download and review work;
+if (Decision?) then (grade)
+  :Enter marks and feedback;
+  |System|
+  :Save grade\n(release now or later);
+  :Notify student once released;
+  |Student|
+  :View marks and feedback;
+  if (Needs to redo the work?) then (no)
+    stop
+  else (yes)
+    :Request resubmission with a reason;
+    |Teacher|
+    :Agree and return the work;
+  endif
+else (return)
+  :Write what needs to change;
+endif
+|System|
+:Status = returned;\nnotify student;
+|Student|
+:Upload revised work;
+|System|
+:Status = resubmitted, attempt + 1;\nprevious attempt kept;
+|Teacher|
+:Review the new attempt;
+stop
+@enduml

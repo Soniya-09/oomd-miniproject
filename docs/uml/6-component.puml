@@ -1,133 +1,63 @@
-@startuml
-title ScheduNova - Component Diagram (detailed)
-skinparam componentStyle uml2
-top to bottom direction
-skinparam nodesep 30
-skinparam ranksep 50
-skinparam component {
-  BackgroundColor #F7F9FB
-  BorderColor #1D5B97
-  BackgroundColor<<planned>> #FFF6E5
-  BorderColor<<planned>> #95580A
-  BackgroundColor<<external>> #F5EEE2
+@startuml 6-component
+!include _style.iuml
+title EduFlow — Component Diagram
+
+package "Frontend (Browser)" {
+  component [Pages\nHTML + Bootstrap] as Pages
+  component [App Script\napi calls, forms, tables] as AppJs
+  component [Dashboards\nChart.js charts] as Charts
+  component [Task & Calendar\nscripts] as TaskJs
 }
 
-package "Client tier: Web browser" {
-  component "ScheduNova Web UI" as UI {
-    component "Sign-up / Login pages" as UI_AUTH
-    component "Task input\n(sentence or form)" as UI_INPUT
-    component "Task list" as UI_LIST
-    component "Day plan view" as UI_PLAN <<planned>>
-    component "API client\n(session cookie + CSRF header)" as UI_API
+package "Backend (PHP)" {
+  component [Router] as Router
+  component [Security\nlogin check, role check, CSRF] as Security
+  component [Controllers\nAdmin, Teacher, Student] as Ctrl
+
+  package "Services" {
+    component [User & Class\nManagement] as UserSvc
+    component [Assignment\nService] as AssignSvc
+    component [Submission\nService] as SubSvc
+    component [Personal Task\nService] as TaskSvc
+    component [Analytics\nService] as Analytics
+    component [Notification\nService] as Notif
+    component [File\nStorage] as Files
   }
+
+  component [Database Access\n(PDO)] as DBA
 }
 
-() "HTTP JSON API\n/api/method, /api/resource" as I_HTTP
-() "WebSocket\nrealtime events" as I_WS
+component [Reminder Job\n(cron)] as Cron
+database "MySQL\nDatabase" as DB
+folder "Uploaded Files" as Store
 
-package "Application tier: Frappe bench" {
-  component "Web server\n(bench serve / gunicorn)" as WEB
-  component "Socket.IO server\n(Node, :9001)" as SIO
+interface "JSON API" as API
 
-  package "Frappe request layer" {
-    component "Request router\n+ @whitelist check" as ROUTER
-    component "Auth and\nSession manager" as SESSION
-    component "CSRF guard" as CSRF
-  }
+Pages ..> AppJs
+Charts ..> AppJs
+TaskJs ..> AppJs
+AppJs --> API
+API - Router
+Router --> Security
+Security --> Ctrl
 
-  package "schedunova app" {
-    component "api.py\n--\n+sign_up(email, full_name, password)\n+me()\n+get_csrf_token()" as API
-    component "Nova Task DocType" as NT {
-      component "nova_task.json\n(fields, permissions)" as NT_SCHEMA
-      component "NovaTask controller\nvalidate()" as NT_CTRL
-    }
-    component "hooks.py\n(app metadata)" as HOOKS
-    component "Task Parser\nparse(utterance)" as PARSER <<planned>>
-    component "Day Planner\nbuild_plan(user, day)" as PLANNER <<planned>>
-  }
+Ctrl --> UserSvc
+Ctrl --> AssignSvc
+Ctrl --> SubSvc
+Ctrl --> TaskSvc
+Ctrl --> Analytics
 
-  package "Frappe services (reused)" {
-    component "Rate limiter" as RL
-    component "Permission engine\n(role + if_owner)" as PERM
-    component "Document ORM" as ORM
-    component "Password manager" as PWD
-    component "Version tracker\n(track_changes)" as VER
-    component "Scheduler" as SCHED
-    component "Background jobs\n(RQ worker)" as RQW
-  }
-}
+AssignSvc --> Notif
+SubSvc --> Notif
+SubSvc --> Files
+Cron --> Notif
 
-cloud "Google Cloud" {
-  component "Gemini API" as GEMINI <<external>>
-}
-() "generateContent\n(HTTPS + API key)" as I_GEM
-
-package "Data tier" {
-  database "MariaDB (site database)" as DB {
-    frame "tabUser" as T_USER
-    frame "tabNova Task" as T_TASK
-    frame "__Auth" as T_AUTH
-    frame "tabVersion" as T_VER
-    frame "tabSessions" as T_SESS
-  }
-  database "Redis cache\n:13001" as RCACHE
-  database "Redis queue\n:11001" as RQUEUE
-}
-
-' ---- provided interfaces (lollipops)
-WEB -up- I_HTTP
-SIO -up- I_WS
-GEMINI -down- I_GEM
-
-' ---- client
-UI_AUTH --> UI_API
-UI_INPUT --> UI_API
-UI_LIST --> UI_API
-UI_PLAN --> UI_API
-UI_API ..> I_HTTP : use
-UI_LIST ..> I_WS : subscribe
-
-' ---- request path
-WEB --> ROUTER
-ROUTER --> SESSION
-ROUTER --> CSRF
-ROUTER --> API : /api/method
-ROUTER --> NT : /api/resource
-ROUTER ..> PARSER
-HOOKS .up.> ROUTER : registers app
-
-' ---- schedunova app dependencies
-API --> RL
-API --> PWD
-API --> ORM
-NT --> PERM
-NT --> ORM
-NT --> VER
-PARSER ..> I_GEM : use
-PARSER -left-> NT : create draft
-PLANNER -left-> NT : read tasks
-SCHED .up.> PLANNER : re-plan
-
-' ---- persistence and messaging
-ORM --> DB
-PWD --> DB
-VER --> DB
-SESSION --> DB
-SESSION --> RCACHE
-RL --> RCACHE
-SCHED --> RQUEUE
-RQW --> RQUEUE
-ORM ..> SIO : publish doc updates
-
-note right of API
-  sign_up uses: Rate limiter (5 per hour),
-  Document ORM (insert User),
-  Password manager (update_password)
-end note
-
-legend bottom right
-  Orange = planned, not in the code yet.
-  Circle (lollipop) = provided interface.
-  Dashed "use" arrow = required interface.
-endlegend
+UserSvc --> DBA
+AssignSvc --> DBA
+SubSvc --> DBA
+TaskSvc --> DBA
+Analytics --> DBA
+Notif --> DBA
+DBA --> DB
+Files --> Store
 @enduml

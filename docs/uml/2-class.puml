@@ -1,65 +1,161 @@
-@startuml
-skinparam classAttributeIconSize 0
-abstract class Document <<framework>> {
-  +name : str
-  +owner : str
-  +creation : datetime
-  +modified : datetime
-  +insert()
-  +save()
-  +delete()
-  +validate()
+@startuml 2-class
+!include _style.iuml
+title EduFlow — Class Diagram
+hide empty members
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
 }
-class User <<Frappe core>> {
-  +email : str
-  +first_name : str
-  +full_name : str
-  +user_type : str
-  +enabled : bool
+
+enum SubmissionStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  GRADED
+  RETURNED
+  RESUBMITTED
 }
-class NovaTask {
-  +title : str
-  +priority : Priority = medium
-  +duration_min : int = 45
-  +fixed_start : datetime
-  +deadline : datetime
-  +context : str
-  +done : bool = false
-  +raw : str {readOnly}
-  +validate()
+
+class Institution {
+  - name: string
+  - timezone: string
 }
-enum Priority {
-  high
-  medium
-  low
+
+abstract class User {
+  - id: int
+  - fullName: string
+  - email: string
+  - passwordHash: string
+  - role: Role
+  - isActive: bool
+  + login(email, password): bool
+  + logout(): void
+  + changePassword(old, new): void
 }
-class SchedunovaAPI <<module api.py>> {
-  +sign_up(email, full_name, password) : dict
-  +me() : dict
-  +get_csrf_token() : dict
+
+class Admin {
+  + createUser(data): User
+  + deactivateUser(u: User): void
+  + enroll(s: Student, c: Class): void
 }
-class TaskParser <<planned>> {
-  -gemini_api_key : str
-  +parse(utterance : str) : NovaTask
+
+class Teacher {
+  - employeeNo: string
+  - designation: string
+  + createAssignment(data): Assignment
+  + grade(s: Submission, marks, feedback): void
+  + returnForRevision(s: Submission, feedback): void
 }
-class DayPlanner <<planned>> {
-  +build_plan(user : User, day : date) : DayPlan
+
+class Student {
+  - admissionNo: string
+  - rollNo: string
+  + submit(a: Assignment, files): Submission
+  + addTask(title, dueDate): PersonalTask
 }
-class DayPlan <<planned>> {
-  +day : date
+
+class AcademicSession {
+  - name: string
+  - startsOn: Date
+  - endsOn: Date
 }
-class TimeBlock <<planned>> {
-  +start : datetime
-  +end : datetime
+
+class Class {
+  - name: string
+  - division: string
+  + students(): Student[]
 }
-Document <|-- User
-Document <|-- NovaTask
-NovaTask --> Priority
-User "1" --> "0..*" NovaTask : owns >
-SchedunovaAPI ..> User : <<create>>
-TaskParser ..> NovaTask : <<create>>
-DayPlanner ..> DayPlan : <<create>>
-DayPlan "1" *-- "1..*" TimeBlock
-TimeBlock "0..*" o-- "1" NovaTask
-DayPlan "0..*" --> "1" User : for >
+
+class Subject {
+  - code: string
+  - name: string
+}
+
+class Assignment {
+  - title: string
+  - description: string
+  - dueAt: DateTime
+  - maxMarks: decimal
+  - allowLate: bool
+  - status: string
+  + publish(): void
+  + close(): void
+  + isOverdue(): bool
+}
+
+class Submission {
+  - attempt: int
+  - submittedAt: DateTime
+  - isLate: bool
+  - marks: decimal
+  - status: SubmissionStatus
+  + resubmit(files): void
+}
+
+class SubmissionFile {
+  - fileName: string
+  - sizeBytes: int
+}
+
+class Feedback {
+  - comment: string
+  - createdAt: DateTime
+}
+
+class PersonalTask {
+  - title: string
+  - priority: string
+  - dueAt: DateTime
+  - status: string
+  - completedAt: DateTime
+  + complete(): void
+  + reopen(): void
+}
+
+class TaskCategory {
+  - name: string
+  - color: string
+}
+
+class Notification {
+  - title: string
+  - message: string
+  - readAt: DateTime
+  + markRead(): void
+}
+
+class Announcement {
+  - title: string
+  - body: string
+  - publishedAt: DateTime
+}
+
+User <|-- Admin
+User <|-- Teacher
+User <|-- Student
+User ..> Role
+
+Institution "1" *-- "*" User
+Institution "1" *-- "*" AcademicSession
+AcademicSession "1" *-- "*" Class
+Class "*" -- "*" Student : enrolled in >
+Class "*" -- "*" Subject : taught >
+Teacher "*" -- "*" Subject : teaches >
+
+Teacher "1" -- "*" Assignment : creates >
+Assignment "*" --> "1" Class
+Assignment "*" --> "1" Subject
+Assignment "1" *-- "*" Submission
+Student "1" -- "*" Submission : makes >
+Submission "1" *-- "1..*" SubmissionFile
+Submission "1" *-- "*" Feedback
+Submission ..> SubmissionStatus
+
+Student "1" *-- "*" PersonalTask
+Student "1" *-- "*" TaskCategory
+TaskCategory "0..1" o-- "*" PersonalTask
+
+User "1" *-- "*" Notification : receives >
+User "1" -- "*" Announcement : posts >
 @enduml

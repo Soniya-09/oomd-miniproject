@@ -1,0 +1,57 @@
+@startuml 3a-sequence-login
+!include _style.iuml
+title EduFlow — Sequence Diagram: Log in
+autonumber
+
+actor User
+participant "Browser" as B
+participant "public/index.php\n: Kernel + Router" as K
+participant "VerifyCsrf\n: Middleware" as CSRF
+participant ": AuthController" as AC
+participant ": AuthService" as AS
+participant ": RateLimiter" as RL
+participant ": UserRepository" as UR
+participant ": Auth / Session" as AU
+database "MySQL" as DB
+
+User -> B : open /login
+B -> K : GET /login
+K -> AC : showLogin()
+AC --> B : login form with CSRF token
+User -> B : enter email + password, submit
+B -> K : POST /login (email, password, _csrf)
+K -> CSRF : handle(request)
+alt CSRF token missing or wrong
+  CSRF --> B : 419, redirect back with message
+else token valid
+  CSRF -> AC : login(request)
+  AC -> AS : attempt(email, password, ip)
+  AS -> RL : tooMany("login|email|ip")?
+  RL -> DB : SELECT hits FROM rate_limits
+  alt too many recent failures
+    AS --> AC : HttpException 429
+    AC --> B : form + "Too many login attempts"
+  else allowed
+    AS -> UR : findByEmail(email)
+    UR -> DB : SELECT * FROM users WHERE email = ?
+    DB --> UR : user row (or none)
+    AS -> AS : password_verify(password, hash)
+    alt wrong password, unknown email or deactivated
+      AS -> RL : hit(email|ip), hit(ip)
+      AS --> AC : HttpException 422
+      AC --> B : form + "Incorrect email or password"
+    else credentials OK and account active
+      AS -> DB : UPDATE users SET last_login_at
+      AS -> AU : login(user)
+      AU -> AU : regenerate session id,\nrotate CSRF token
+      AS -> DB : INSERT audit_logs ('login')
+      AS --> AC : user
+      AC --> B : 302 redirect to /admin, /teacher or /student
+      B -> K : GET dashboard (session cookie)
+      K -> AU : user() — re-read from DB every request
+      AU -> DB : SELECT user JOIN institution
+      K --> B : dashboard page
+    end
+  end
+end
+@enduml
