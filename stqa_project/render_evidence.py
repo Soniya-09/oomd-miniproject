@@ -40,11 +40,11 @@ def highlight(code: str) -> str:
 
 def page(title: str, body: str) -> str:
     return f"""<!doctype html><meta charset="utf-8"><style>
-body{{margin:0;background:#fff;font:13px/1.45 Consolas,monospace;color:#000;border:1px solid #000}}
-.bar{{padding:8px 14px;border-bottom:1px solid #000;font-family:Segoe UI,sans-serif}}
+body{{margin:0;background:#1e1e1e;font:13px/1.45 Consolas,monospace;color:#d4d4d4}}
+.bar{{padding:8px 14px;background:#2d2d2d;color:#ccc;font-family:Segoe UI,sans-serif;border-bottom:1px solid #3c3c3c}}
 pre{{margin:0;padding:14px 18px;white-space:pre-wrap}}
-.k,.d,.hdr{{font-weight:bold}}.c{{font-style:italic}}
-.fail{{font-weight:bold;text-decoration:underline}}
+.k{{color:#c586c0}}.s{{color:#ce9178}}.c{{color:#6a9955;font-style:italic}}.d{{color:#dcdcaa}}
+.pass{{color:#4ec9b0}}.fail{{color:#f48771;font-weight:bold}}.hdr{{color:#569cd6;font-weight:bold}}
 </style><div class="bar"><b>{html.escape(title)}</b></div><pre>{body}</pre>"""
 
 
@@ -95,9 +95,13 @@ def main():
         keep = [l for l in lines if "PASSED" in l or "FAILED" in l or l.startswith(("=", "Total", "  TC", "platform", "rootdir", "collected", "- Generated"))]
         snap(driver, page("PS D:\\oomd-miniproject\\stqa_project> pytest", colour_console("\n".join(keep))), "OUTPUT_console.png", 1250)
 
-        side = subprocess.run([sys.executable, str(ROOT / "selenium_ide" / "replay_side.py")], capture_output=True, text=True, cwd=ROOT)
-        snap(driver, page("PS D:\\oomd-miniproject\\stqa_project> python selenium_ide\\replay_side.py",
-                          colour_console(side.stdout.replace("PASS ", "PASSED ").replace("FAIL ", "FAILED "))), "OUTPUT_side_replay.png", 900)
+        if "--skip-side" in sys.argv:  # replay needs the EduFlow server running
+            side = None
+        else:
+            side = subprocess.run([sys.executable, str(ROOT / "selenium_ide" / "replay_side.py")], capture_output=True, text=True, cwd=ROOT)
+        if side and side.stdout.strip():
+            snap(driver, page("PS D:\\oomd-miniproject\\stqa_project> python selenium_ide\\replay_side.py",
+                              colour_console(side.stdout.replace("PASS ", "PASSED ").replace("FAIL ", "FAILED "))), "OUTPUT_side_replay.png", 900)
 
         driver.set_window_size(1300, 1000)
         driver.get((ROOT / "reports" / "test_report.html").as_uri())
