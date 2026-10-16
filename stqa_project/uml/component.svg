@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300px" height="1300px" viewBox="0 0 1300 1300"><defs>
+<marker id="open" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,1 L13,7 L1,13" fill="none" stroke="#000" stroke-width="1.6"/></marker>
+<marker id="filled" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,1 L13,7 L0,13 z" fill="#000"/></marker>
+<marker id="tri" viewBox="0 0 22 22" refX="21" refY="11" markerWidth="22" markerHeight="22" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,1 L21,11 L1,21 z" fill="#fff" stroke="#000" stroke-width="1.5"/></marker>
+<marker id="diamond" viewBox="0 0 26 14" refX="25" refY="7" markerWidth="26" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,7 L13,1 L25,7 L13,13 z" fill="#000" stroke="#000" stroke-width="1.2"/></marker>
+<marker id="odiamond" viewBox="0 0 26 14" refX="25" refY="7" markerWidth="26" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,7 L13,1 L25,7 L13,13 z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker>
+</defs>
+<rect x="4" y="4" width="1292" height="1292" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="650.0" y="51.1" font-family="'Times New Roman', Times, serif" font-size="26" text-anchor="middle" font-weight="bold">Component Diagram – EduFlow</text>
+<rect x="30" y="64" width="186" height="26" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="30" y="90" width="1240" height="204" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="123.0" y="81.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Frontend (Browser)</text>
+<rect x="75.0" y="104.0" width="250" height="62" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="299.0" y="111.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="294.0" y="115.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="294.0" y="123.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="194" y="122.8" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«component»</text>
+<text x="194" y="140.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Pages</text>
+<text x="194" y="157.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">(HTML + Bootstrap)</text>
+<rect x="525.0" y="104.0" width="250" height="62" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="749.0" y="111.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="744.0" y="115.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="744.0" y="123.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="644" y="122.8" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«component»</text>
+<text x="644" y="140.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Dashboards</text>
+<text x="644" y="157.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">(Chart.js charts)</text>
+<rect x="975.0" y="104.0" width="250" height="62" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="1199.0" y="111.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="1194.0" y="115.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="1194.0" y="123.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="1094" y="122.8" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«component»</text>
+<text x="1094" y="140.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Task &amp; Calendar</text>
+<text x="1094" y="157.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">scripts</text>
+<rect x="510.0" y="217.0" width="280" height="56" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="764.0" y="224.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="759.0" y="228.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="759.0" y="236.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="644" y="235.8" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«component»</text>
+<text x="644" y="258.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">App Script</text>
+<polyline points="200,166.0 200,245 510.0,245" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="360" y="237.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«use»</text>
+<polyline points="650,166.0 650,217.0" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="660" y="201.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«use»</text>
+<polyline points="1100,166.0 1100,245 790.0,245" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="940" y="237.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«use»</text>
+<rect x="30" y="330" width="141" height="26" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="30" y="356" width="1240" height="734" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="100.5" y="347.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Backend (PHP)</text>
+<rect x="530.0" y="374.0" width="240" height="52" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="744.0" y="381.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="739.0" y="385.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="739.0" y="393.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="644" y="404.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Router</text>
+<polyline points="650,273.0 650,308" fill="none" stroke="#000" stroke-width="1.5"/>
+<path d="M635,323 A15,15 0 0 1 665,323" fill="none" stroke="#000" stroke-width="1.5"/>
+<circle cx="650" cy="323" r="9" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polyline points="650,332 650,374.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="674" y="328.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">JSON API (HTTPS)</text>
+<rect x="500.0" y="454.0" width="300" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="774.0" y="461.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="769.0" y="465.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="769.0" y="473.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="644" y="479.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Security</text>
+<text x="644" y="496.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">(login, role check, CSRF)</text>
+<rect x="500.0" y="541.0" width="300" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="774.0" y="548.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="769.0" y="552.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="769.0" y="560.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="644" y="566.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Controllers</text>
+<text x="644" y="583.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">(Admin, Teacher, Student)</text>
+<polyline points="650,426.0 650,454.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="650,512.0 650,541.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<rect x="60" y="680" width="130" height="26" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="60" y="706" width="1180" height="254" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="125.0" y="697.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Services</text>
+<polyline points="650,599.0 650,630" fill="none" stroke="#000" stroke-width="1.5"/>
+<path d="M635,645 A15,15 0 0 1 665,645" fill="none" stroke="#000" stroke-width="1.5"/>
+<circle cx="650" cy="645" r="9" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polyline points="650,654 650,706" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="674" y="650.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">Service interface</text>
+<rect x="85.0" y="746.0" width="210" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="269.0" y="753.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="264.0" y="757.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="264.0" y="765.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="184" y="771.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">User &amp; Class</text>
+<text x="184" y="788.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Management</text>
+<rect x="375.0" y="746.0" width="210" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="559.0" y="753.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="554.0" y="757.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="554.0" y="765.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="474" y="771.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Assignment</text>
+<text x="474" y="788.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Service</text>
+<rect x="665.0" y="746.0" width="210" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="849.0" y="753.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="844.0" y="757.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="844.0" y="765.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="764" y="771.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Submission</text>
+<text x="764" y="788.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Service</text>
+<rect x="980.0" y="746.0" width="200" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="1154.0" y="753.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="1149.0" y="757.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="1149.0" y="765.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="1074" y="771.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">File</text>
+<text x="1074" y="788.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Storage</text>
+<rect x="85.0" y="866.0" width="210" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="269.0" y="873.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="264.0" y="877.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="264.0" y="885.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="184" y="891.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Personal Task</text>
+<text x="184" y="908.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Service</text>
+<rect x="375.0" y="866.0" width="210" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="559.0" y="873.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="554.0" y="877.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="554.0" y="885.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="474" y="891.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Notification</text>
+<text x="474" y="908.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Service</text>
+<rect x="980.0" y="866.0" width="200" height="58" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="1154.0" y="873.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="1149.0" y="877.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="1149.0" y="885.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="1074" y="891.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Analytics</text>
+<text x="1074" y="908.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Service</text>
+<polyline points="480,804.0 480,866.0" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="490" y="849.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«use»</text>
+<polyline points="720,804.0 720,895 585.0,895" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="730" y="849.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«use»</text>
+<polyline points="875.0,775 980.0,775" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="925" y="767.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«use»</text>
+<rect x="675.0" y="1019.0" width="290" height="52" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="939.0" y="1026.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="934.0" y="1030.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="934.0" y="1038.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="814" y="1049.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Database Access (PDO)</text>
+<polyline points="820,960 820,975" fill="none" stroke="#000" stroke-width="1.5"/>
+<path d="M805,990 A15,15 0 0 1 835,990" fill="none" stroke="#000" stroke-width="1.5"/>
+<circle cx="820" cy="990" r="9" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polyline points="820,999 820,1019.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="844" y="995.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">Data access interface</text>
+<rect x="300.0" y="1019.0" width="260" height="52" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="534.0" y="1026.0" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="529.0" y="1030.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="529.0" y="1038.0" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="424" y="1049.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Reminder Job (cron)</text>
+<polyline points="430,1019.0 430,924.0" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="442" y="994.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«use»</text>
+<path d="M730.0,1139 A90.0,9 0 0 1 910.0,1139 V1201 A90.0,9 0 0 1 730.0,1201 Z" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M730.0,1139 A90.0,9 0 0 0 910.0,1139" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="820" y="1180.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">MySQL Database</text>
+<polyline points="820,1071.0 820,1130" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="832" y="1114.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">PDO / TCP 3306</text>
+<path d="M1040,1140 h60 l10,10 h110 v54 h-180 z" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="1130" y="1184.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Uploaded Files</text>
+<polyline points="1180.0,775 1215,775 1215,1140" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="1205" y="1114.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="end" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">stores</text>
+<rect x="40" y="1110" width="360" height="170" rx="0" fill="#fff" stroke="#000" stroke-width="1.2" stroke-dasharray="7,5"/>
+<text x="60" y="1134.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="start" font-weight="bold">Legend</text>
+<rect x="62" y="1148" width="16" height="20" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="57" y="1152" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<rect x="57" y="1160" width="10" height="4" rx="0" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="100" y="1162.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="start">Component</text>
+<polyline points="55,1190 125,1190" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="140" y="1194.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="start">Association (communicates with)</text>
+<polyline points="55,1220 125,1220" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="140" y="1224.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="start">Dependency «use»</text>
+<polyline points="55,1255 82,1255" fill="none" stroke="#000" stroke-width="1.5"/>
+<path d="M82,1240 A15,15 0 0 1 82,1270" fill="none" stroke="#000" stroke-width="1.5"/>
+<circle cx="88" cy="1255" r="8" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polyline points="96,1255 125,1255" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="140" y="1259.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="start">Assembly connector (socket / ball)</text>
+</svg>

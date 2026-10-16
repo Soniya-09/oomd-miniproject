@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160px" height="1560px" viewBox="0 0 1160 1560"><defs>
+<marker id="open" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,1 L13,7 L1,13" fill="none" stroke="#000" stroke-width="1.6"/></marker>
+<marker id="filled" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,1 L13,7 L0,13 z" fill="#000"/></marker>
+<marker id="tri" viewBox="0 0 22 22" refX="21" refY="11" markerWidth="22" markerHeight="22" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,1 L21,11 L1,21 z" fill="#fff" stroke="#000" stroke-width="1.5"/></marker>
+<marker id="diamond" viewBox="0 0 26 14" refX="25" refY="7" markerWidth="26" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,7 L13,1 L25,7 L13,13 z" fill="#000" stroke="#000" stroke-width="1.2"/></marker>
+<marker id="odiamond" viewBox="0 0 26 14" refX="25" refY="7" markerWidth="26" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,7 L13,1 L25,7 L13,13 z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker>
+</defs>
+<rect x="4" y="4" width="1152" height="1552" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="580.0" y="51.1" font-family="'Times New Roman', Times, serif" font-size="26" text-anchor="middle" font-weight="bold">Use Case Diagram – EduFlow</text>
+<rect x="330" y="70" width="800" height="1470" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="730" y="98.0" font-family="Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle" font-weight="bold">EduFlow System</text>
+<ellipse cx="560" cy="150" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="154.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Log in</text>
+<ellipse cx="560" cy="225" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="229.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Manage profile</text>
+<ellipse cx="950" cy="150" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="950" y="154.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Reset password</text>
+<ellipse cx="560" cy="320" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="324.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Manage users</text>
+<ellipse cx="950" cy="320" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="950" y="324.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Import users (CSV)</text>
+<ellipse cx="560" cy="385" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="389.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Manage classes &amp; subjects</text>
+<ellipse cx="560" cy="450" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="454.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Enroll students</text>
+<ellipse cx="560" cy="515" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="519.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Assign teachers</text>
+<ellipse cx="560" cy="610" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="614.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Post announcement</text>
+<ellipse cx="560" cy="680" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="684.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">View reports</text>
+<ellipse cx="560" cy="790" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="794.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Create assignment</text>
+<ellipse cx="560" cy="860" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="864.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Publish assignment</text>
+<ellipse cx="560" cy="930" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="934.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Review &amp; grade submission</text>
+<ellipse cx="950" cy="1010" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="950" y="1014.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Return for revision</text>
+<ellipse cx="950" cy="860" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="950" y="864.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Send notification</text>
+<ellipse cx="560" cy="1090" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="1094.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">View assignments</text>
+<ellipse cx="560" cy="1160" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="1164.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Submit assignment</text>
+<ellipse cx="950" cy="1160" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="950" y="1164.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Validate file</text>
+<ellipse cx="560" cy="1230" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="1234.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Manage personal tasks</text>
+<ellipse cx="560" cy="1300" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="1304.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">View calendar</text>
+<ellipse cx="560" cy="1370" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="1374.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">View progress dashboard</text>
+<ellipse cx="560" cy="1470" rx="125" ry="25" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="560" y="1474.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">Send reminders</text>
+<circle cx="90" cy="121" r="11" fill="#fff" stroke="#000" stroke-width="1.8"/>
+<polyline points="90,132 90,162" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="70,142 110,142" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="74,186 90,162 106,186" fill="none" stroke="#000" stroke-width="1.8"/>
+<text x="90" y="209.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">User</text>
+<circle cx="230" cy="391" r="11" fill="#fff" stroke="#000" stroke-width="1.8"/>
+<polyline points="230,402 230,432" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="210,412 250,412" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="214,456 230,432 246,456" fill="none" stroke="#000" stroke-width="1.8"/>
+<text x="230" y="479.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Admin</text>
+<circle cx="230" cy="771" r="11" fill="#fff" stroke="#000" stroke-width="1.8"/>
+<polyline points="230,782 230,812" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="210,792 250,792" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="214,836 230,812 246,836" fill="none" stroke="#000" stroke-width="1.8"/>
+<text x="230" y="859.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Teacher</text>
+<circle cx="230" cy="1161" r="11" fill="#fff" stroke="#000" stroke-width="1.8"/>
+<polyline points="230,1172 230,1202" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="210,1182 250,1182" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="214,1226 230,1202 246,1226" fill="none" stroke="#000" stroke-width="1.8"/>
+<text x="230" y="1249.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Student</text>
+<circle cx="90" cy="1431" r="11" fill="#fff" stroke="#000" stroke-width="1.8"/>
+<polyline points="90,1442 90,1472" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="70,1452 110,1452" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="74,1496 90,1472 106,1496" fill="none" stroke="#000" stroke-width="1.8"/>
+<text x="90" y="1518.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic">«system»</text>
+<text x="90" y="1536.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Scheduler</text>
+<polyline points="114.0,142 435,150.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="114.0,142 435,225.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,412 435,320.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,412 435,385.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,412 435,450.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,412 435,515.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,412 435,610.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,412 435,680.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,792 435,610.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,792 435,680.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,792 435,790.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,792 435,860.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,792 435,930.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,1182 435,1090.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,1182 435,1160.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,1182 435,1230.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,1182 435,1300.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="254.0,1182 435,1370.0" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="114.0,1470 435,1470" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="90,1182 90,225" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#tri)"/>
+<polyline points="208.0,412 90,412" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="208.0,792 90,792" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="208.0,1182 90,1182" fill="none" stroke="#000" stroke-width="1.5"/>
+<polyline points="825,150.0 685,150.0" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="755.0" y="142.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«extend»</text>
+<polyline points="825,320.0 685,320.0" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="755.0" y="312.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«extend»</text>
+<polyline points="825,1010 620,1010 620,953" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="720" y="1002.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«extend»</text>
+<polyline points="685,1160.0 825,1160.0" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="755.0" y="1152.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«include»</text>
+<polyline points="685,860.0 825,860.0" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="755.0" y="852.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«include»</text>
+<polyline points="685,930 950,930 950,885" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="996" y="916.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«include»</text>
+<polyline points="685,610 950,610 950,835" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="996" y="724.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«include»</text>
+<polyline points="685,1470 1100,1470 1100,860 1075,860" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="1060" y="1204.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">«include»</text>
+</svg>

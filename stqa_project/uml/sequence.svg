@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400px" height="1450px" viewBox="0 0 1400 1450"><defs>
+<marker id="open" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,1 L13,7 L1,13" fill="none" stroke="#000" stroke-width="1.6"/></marker>
+<marker id="filled" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,1 L13,7 L0,13 z" fill="#000"/></marker>
+<marker id="tri" viewBox="0 0 22 22" refX="21" refY="11" markerWidth="22" markerHeight="22" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,1 L21,11 L1,21 z" fill="#fff" stroke="#000" stroke-width="1.5"/></marker>
+<marker id="diamond" viewBox="0 0 26 14" refX="25" refY="7" markerWidth="26" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,7 L13,1 L25,7 L13,13 z" fill="#000" stroke="#000" stroke-width="1.2"/></marker>
+<marker id="odiamond" viewBox="0 0 26 14" refX="25" refY="7" markerWidth="26" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,7 L13,1 L25,7 L13,13 z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker>
+</defs>
+<rect x="4" y="4" width="1392" height="1442" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="700.0" y="51.1" font-family="'Times New Roman', Times, serif" font-size="26" text-anchor="middle" font-weight="bold">Sequence Diagram – Submit and Grade an Assignment</text>
+<circle cx="90" cy="81" r="11" fill="#fff" stroke="#000" stroke-width="1.8"/>
+<polyline points="90,92 90,122" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="70,102 110,102" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="74,146 90,122 106,146" fill="none" stroke="#000" stroke-width="1.8"/>
+<text x="90" y="169.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Student</text>
+<polyline points="90,174 90,1420" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="8,6"/>
+<rect x="195.0" y="82" width="130" height="46" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="260" y="109.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Browser</text>
+<polyline points="260,128 260,1420" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="8,6"/>
+<rect x="365.0" y="82" width="130" height="46" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="430" y="109.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Controller</text>
+<polyline points="430,128 430,1420" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="8,6"/>
+<rect x="523.5" y="82" width="173" height="46" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="610" y="109.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">SubmissionService</text>
+<polyline points="610,128 610,1420" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="8,6"/>
+<rect x="725.0" y="82" width="130" height="46" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="790" y="109.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">FileStorage</text>
+<polyline points="790,128 790,1420" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="8,6"/>
+<path d="M895.0,87 A55.0,9 0 0 1 1005.0,87 V129 A55.0,9 0 0 1 895.0,129 Z" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M895.0,87 A55.0,9 0 0 0 1005.0,87" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="950" y="118.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">MySQL</text>
+<polyline points="950,138 950,1420" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="8,6"/>
+<rect x="1029.5" y="82" width="191" height="46" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="1125" y="109.9" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">NotificationService</text>
+<polyline points="1125,128 1125,1420" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="8,6"/>
+<circle cx="1300" cy="81" r="11" fill="#fff" stroke="#000" stroke-width="1.8"/>
+<polyline points="1300,92 1300,122" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="1280,102 1320,102" fill="none" stroke="#000" stroke-width="1.8"/>
+<polyline points="1284,146 1300,122 1316,146" fill="none" stroke="#000" stroke-width="1.8"/>
+<text x="1300" y="169.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Teacher</text>
+<polyline points="1300,174 1300,1420" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="8,6"/>
+<polyline points="90,205 260,205" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="175.0" y="200.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">1. open assignment</text>
+<polyline points="260,241 430,241" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="345.0" y="236.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">2. GET /assignments/{id}</text>
+<polyline points="430,277 950,277" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="690.0" y="272.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">3. load assignment (only if addressed to student)</text>
+<polyline points="950,313 430,313" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="690.0" y="308.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">4. assignment details</text>
+<polyline points="430,349 260,349" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="345.0" y="344.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">5. instructions and due date</text>
+<polyline points="90,385 260,385" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="175.0" y="380.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">6. choose file, click Submit</text>
+<polyline points="260,421 430,421" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="345.0" y="416.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">7. POST submission (file + CSRF)</text>
+<polyline points="430,457 610,457" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="520.0" y="452.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">8. submit(assignment, files)</text>
+<polyline points="610,487 650,487 650,505 612,505" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="658" y="500.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">9. check open and late rule</text>
+<polyline points="610,589 260,589" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="435.0" y="584.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">10. error &quot;Submissions closed&quot;</text>
+<polyline points="610,673 790,673" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="700.0" y="668.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">11. store(file)</text>
+<polyline points="790,703 830,703 830,721 792,721" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="838" y="716.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">12. check type, content, size</text>
+<polyline points="790,805 260,805" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="525.0" y="800.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">13. error &quot;File type not allowed&quot;</text>
+<polyline points="790,889 610,889" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="700.0" y="884.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">14. stored file name</text>
+<polyline points="610,925 950,925" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="780.0" y="920.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">15. save submission (submitted, isLate)</text>
+<polyline points="610,961 1125,961" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="867.5" y="956.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">16. notify(&quot;Submission received&quot;)</text>
+<polyline points="1125,997 950,997" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="1037.5" y="992.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">17. save notification</text>
+<polyline points="610,1033 260,1033" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,6" marker-end="url(#open)"/>
+<text x="435.0" y="1028.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">18. &quot;Submitted successfully&quot;</text>
+<rect x="195" y="753" width="820" height="320" rx="0" fill="none" stroke="#000" stroke-width="1.2"/>
+<path d="M195,753 h48 v16 l-8,8 h-40 z" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="217" y="769.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-weight="bold">alt</text>
+<text x="253" y="771.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">[invalid file]</text>
+<polyline points="195,841 1015,841" fill="none" stroke="#000" stroke-width="1.2" stroke-dasharray="8,6"/>
+<text x="205" y="860.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">[valid file]</text>
+<rect x="175" y="537" width="860" height="558" rx="0" fill="none" stroke="#000" stroke-width="1.2"/>
+<path d="M175,537 h48 v16 l-8,8 h-40 z" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<text x="197" y="553.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-weight="bold">alt</text>
+<text x="233" y="555.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">[not allowed (closed / too late)]</text>
+<polyline points="175,625 1035,625" fill="none" stroke="#000" stroke-width="1.2" stroke-dasharray="8,6"/>
+<text x="185" y="644.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" font-style="italic" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">[allowed]</text>
+<polyline points="1300,1113 430,1113" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="865.0" y="1108.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">19. open review queue</text>
+<polyline points="430,1149 950,1149" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="690.0" y="1144.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">20. load submissions for teacher&#x27;s classes</text>
+<polyline points="1300,1185 610,1185" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="955.0" y="1180.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">21. grade(marks, feedback)</text>
+<polyline points="610,1221 950,1221" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="780.0" y="1216.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">22. update status = graded, save feedback</text>
+<polyline points="610,1257 1125,1257" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="867.5" y="1252.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">23. notify student &quot;Graded&quot;</text>
+<polyline points="1125,1293 950,1293" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="1037.5" y="1288.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">24. save notification</text>
+<polyline points="90,1329 260,1329" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#filled)"/>
+<text x="175.0" y="1324.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">25. view marks and feedback</text>
+</svg>

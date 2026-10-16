@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1420px" height="1060px" viewBox="0 0 1420 1060"><defs>
+<marker id="open" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,1 L13,7 L1,13" fill="none" stroke="#000" stroke-width="1.6"/></marker>
+<marker id="filled" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0,1 L13,7 L0,13 z" fill="#000"/></marker>
+<marker id="tri" viewBox="0 0 22 22" refX="21" refY="11" markerWidth="22" markerHeight="22" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,1 L21,11 L1,21 z" fill="#fff" stroke="#000" stroke-width="1.5"/></marker>
+<marker id="diamond" viewBox="0 0 26 14" refX="25" refY="7" markerWidth="26" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,7 L13,1 L25,7 L13,13 z" fill="#000" stroke="#000" stroke-width="1.2"/></marker>
+<marker id="odiamond" viewBox="0 0 26 14" refX="25" refY="7" markerWidth="26" markerHeight="14" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M1,7 L13,1 L25,7 L13,13 z" fill="#fff" stroke="#000" stroke-width="1.4"/></marker>
+</defs>
+<rect x="4" y="4" width="1412" height="1052" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="710.0" y="51.1" font-family="'Times New Roman', Times, serif" font-size="26" text-anchor="middle" font-weight="bold">Deployment Diagram – EduFlow</text>
+<polygon points="40,90 54,76 524,76 510,90" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polygon points="510,90 524,76 524,286 510,300" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="40" y="90" width="470" height="210" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="275.0" y="112.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic">«device»</text>
+<text x="275.0" y="133.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">User Device (PC / Mobile)</text>
+<rect x="70" y="150" width="410" height="130" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="275" y="172.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-style="italic">«execution environment»  Web Browser</text>
+<rect x="90.0" y="201.0" width="170" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M238.0,207.0 h10 l5,5 v14 h-15 z M248.0,207.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="169" y="219.8" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="169" y="239.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">HTML pages</text>
+<rect x="290.0" y="201.0" width="170" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M438.0,207.0 h10 l5,5 v14 h-15 z M448.0,207.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="369" y="219.8" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="369" y="239.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">JavaScript &amp; CSS</text>
+<polygon points="930,90 944,76 1374,76 1360,90" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polygon points="1360,90 1374,76 1374,286 1360,300" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="930" y="90" width="430" height="210" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="1145.0" y="112.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic">«external»</text>
+<text x="1145.0" y="133.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">CDN (external)</text>
+<rect x="1015.0" y="191.0" width="260" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M1253.0,197.0 h10 l5,5 v14 h-15 z M1263.0,197.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="1139" y="209.8" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="1139" y="229.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">Bootstrap 5, Chart.js 4</text>
+<polyline points="510,190 930,190" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#open)"/>
+<text x="720" y="180.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">HTTPS</text>
+<polygon points="40,390 54,376 914,376 900,390" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polygon points="900,390 914,376 914,996 900,1010" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="40" y="390" width="860" height="620" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="470.0" y="412.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic">«device»</text>
+<text x="470.0" y="433.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Web Server (XAMPP / Linux)</text>
+<rect x="70" y="460" width="380" height="170" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="260" y="482.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-style="italic">«execution environment»  Apache Web Server</text>
+<rect x="110" y="495" width="300" height="115" rx="0" fill="#fff" stroke="#000" stroke-width="1.1" stroke-dasharray="7,5"/>
+<text x="260" y="516.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-weight="bold">public/</text>
+<rect x="160.0" y="541.0" width="200" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M338.0,547.0 h10 l5,5 v14 h-15 z M348.0,547.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="254" y="559.9" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="254" y="579.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">index.php</text>
+<rect x="490" y="460" width="380" height="250" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="680" y="482.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-style="italic">«execution environment»  PHP 8 Runtime</text>
+<rect x="550.0" y="521.0" width="260" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M788.0,527.0 h10 l5,5 v14 h-15 z M798.0,527.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="674" y="539.9" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="674" y="559.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">EduFlow Application</text>
+<rect x="580.0" y="616.0" width="200" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M758.0,622.0 h10 l5,5 v14 h-15 z M768.0,622.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="674" y="634.9" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="674" y="654.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">.env config</text>
+<rect x="70" y="680" width="380" height="130" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="260" y="702.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-style="italic">«execution environment»  Task Scheduler</text>
+<rect x="160.0" y="731.0" width="200" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M338.0,737.0 h10 l5,5 v14 h-15 z M348.0,737.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="254" y="749.9" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="254" y="769.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">reminders.php</text>
+<rect x="490" y="790" width="380" height="190" rx="0" fill="#fff" stroke="#000" stroke-width="1.3" stroke-dasharray="7,5"/>
+<text x="680" y="814.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-weight="bold">storage/  (outside the web root)</text>
+<rect x="570.0" y="841.0" width="220" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M768.0,847.0 h10 l5,5 v14 h-15 z M778.0,847.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="674" y="859.9" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="674" y="879.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">Uploaded files</text>
+<rect x="570.0" y="911.0" width="220" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M768.0,917.0 h10 l5,5 v14 h-15 z M778.0,917.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="674" y="929.9" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="674" y="949.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">Logs</text>
+<polyline points="260,300 260,460" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#open)"/>
+<text x="272" y="349.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">HTTPS</text>
+<polyline points="450,545 490,545" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#open)"/>
+<polyline points="450,700 490,700" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#open)"/>
+<text x="470" y="724.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">runs</text>
+<polyline points="680,710 680,790" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#open)"/>
+<text x="692" y="756.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">reads / writes</text>
+<polygon points="1010,420 1024,406 1384,406 1370,420" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polygon points="1370,420 1384,406 1384,676 1370,690" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="1010" y="420" width="360" height="270" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="1190.0" y="442.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic">«device»</text>
+<text x="1190.0" y="463.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Database Server</text>
+<rect x="1040" y="480" width="300" height="190" rx="0" fill="#fff" stroke="#000" stroke-width="1.3"/>
+<text x="1190" y="502.6" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" font-style="italic">«execution environment»  MySQL 8</text>
+<path d="M1105.0,539 A85.0,9 0 0 1 1275.0,539 V631 A85.0,9 0 0 1 1105.0,631 Z" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M1105.0,539 A85.0,9 0 0 0 1275.0,539" fill="none" stroke="#000" stroke-width="1.5"/>
+<text x="1190" y="587.5" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">«database»</text>
+<text x="1190" y="604.3" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">eduflow</text>
+<polyline points="870,545 1040,545" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#open)"/>
+<text x="955" y="535.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">TCP 3306</text>
+<polygon points="1010,790 1024,776 1384,776 1370,790" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<polygon points="1370,790 1384,776 1384,926 1370,940" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<rect x="1010" y="790" width="360" height="150" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="1190.0" y="812.2" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="middle" font-style="italic">«external»</text>
+<text x="1190.0" y="833.2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle" font-weight="bold">Mail Server</text>
+<rect x="1075.0" y="869.0" width="230" height="48" rx="0" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M1283.0,875.0 h10 l5,5 v14 h-15 z M1293.0,875.0 v5 h5" fill="#fff" stroke="#000" stroke-width="1.1"/>
+<text x="1184" y="887.9" font-family="Arial, Helvetica, sans-serif" font-size="11" text-anchor="middle" font-style="italic">«artifact»</text>
+<text x="1184" y="907.5" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">SMTP mail service</text>
+<polyline points="870,600 960,600 960,865 1010,865" fill="none" stroke="#000" stroke-width="1.5" marker-end="url(#open)"/>
+<text x="968" y="757.0" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">SMTP</text>
+<text x="968" y="771.4" font-family="Arial, Helvetica, sans-serif" font-size="12" text-anchor="start" paint-order="stroke" stroke="#fff" stroke-width="5" stroke-linejoin="round">(password reset)</text>
+</svg>
